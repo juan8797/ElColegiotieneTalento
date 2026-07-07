@@ -1,0 +1,217 @@
+.menu{
+  width: 100%;
+  background-color: #fdd94e;
+  text-align: center;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.menu a{
+    flex: 1;
+    display:flexbox;
+    color: black;
+    text-align: center;
+    padding: 7px 8px ;
+    text-decoration: none;
+}
+
+.menu a:hover{
+    color: black;
+}
+
+#menus{
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif ;
+}
+
+
+
+.carousel-inner img {
+  width: 100%;
+  margin: auto;
+  min-height: 200px;
+  background-color: #222831;
+}
+
+@media (max-width: 600px) {
+  .carousel-caption {
+    display: none;
+    background-color: #222831;
+  }
+}
+
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  background-color: #a2a3a5 !important; 
+}
+
+body > .container-fluid{
+  flex: 1;
+}
+
+h3{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif ;
+    color: #EEEEEE;
+}
+
+p, .Categorias, ul{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif ;
+    color: #ffffff;
+    text-align: center;
+}
+
+.recuadro{
+    background-color: #43546a !important;
+}
+/*Recuadros Index Explicativos*/
+.well{
+    width: 350px;
+    height: 80px;
+    margin: 20px;
+    padding: auto;
+    color: #333630;
+    text-align: center;
+    background-color: #5dc7d0;
+}
+
+.Color-text{
+  color: #000000;
+}
+/*------------------------------------------*/
+.imgcentral{
+  width: 60%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.img-responsive{
+  width: 60%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
+
+/*Pie de Pagina*/
+.pie{
+    color: #000000;
+}
+
+.container-fluid{
+  background-color: #187f3f;
+}
+footer {
+  margin-top: auto;
+  padding: 25px;
+}
+/*-------------------------------------------*/
+.Categorias{
+  color: #000000;
+}
+
+.btn-primary{
+  background-color: #43546a  !important;
+  color: #9899A0;
+}
+
+.actualizar{
+  margin: 20px;
+}
+
+.Separaion{
+  margin-top: auto;
+}
+
+.encabezado-panel {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+.btn-editar {
+    background-color: #43546a;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-editar:hover {
+    background-color: #2f3d4e;
+}
+/*cajas textuales sobre el festival*/
+.box-1{
+  background-color: #fdd94e;
+}
+
+.box-2{
+  background-color: #43546a;
+}
+
+.box-3{
+  background-color: #9899A0;
+}
+
+.box-4{
+  background-color: #ffffff;
+}
+
+.box-4, h3, p{
+  color: #000000;
+}
+
+.Container-box{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box-1, .box-2, .box-3, .box-4{
+  width: 50%;
+  box-sizing: border-box;
+  padding: 20px;
+}
+/*----------------------------------------*/
+
+/*Formulario para participar*/
+.formulario-participacion {
+    width: 400px;
+    margin: 40px auto;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.formulario-participacion h2 {
+    background-color: #43546a;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+}
+
+.formulario-participacion .cuerpo-formulario {
+    background-color: #ffffff;
+    padding: 30px;
+}
+
+.formulario-participacion .cuerpo-formulario p {
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.formulario-participacion label {
+    color: #000000;
+}
+
+.formulario-participacion button {
+    display: block;
+    margin: 20px auto 0 auto;
+    background-color: #43546a;
+    color: #ffffff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/*---------------------------------------*/
