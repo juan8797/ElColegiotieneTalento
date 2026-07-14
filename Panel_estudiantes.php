@@ -15,7 +15,7 @@ include 'conexion/db.php';
         <h1>Bienvenido, <?php echo $_SESSION['nombre']; ?></h1>
         <a href="editarPerfil.php"><button class="btn-editar">Editar Perfil</button></a>
     </div>
-    <a href="index.php"><button>inicio</button></a>
+    <a href="login.php"><button>Cerrar sesion</button></a>
     <div class="Container-box">
         <div class="box-1">
             <h2>¿En qué consiste el festival?</h2>
