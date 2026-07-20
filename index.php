@@ -11,21 +11,21 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
-<?php include 'menu.php';?>
+<?php include 'includes/menu.php';?>
 <div class="container text-center">    
   <h3 class="Categorias">Festival El Colegio Tiene Talentos</h3><br>
   <div class="row">
-    <img src="ImagenPrincipal.jpeg" alt="Objetivos" class="imgcentral">
+    <img src="img/ImagenPrincipal.jpeg" alt="Objetivos" class="imgcentral">
     <div class="col-sm-4">
-      <img src="BailesGrupales.jpeg" alt="Baile grupal" class="img-responsive">
+      <img src="img/BailesGrupales.jpeg" alt="Baile grupal" class="img-responsive">
       <p class="Categorias">Bailes Grupales</p>
     </div>
     <div class="col-sm-4"> 
-      <img src="talentos individuales.jpeg" alt="Talento individual" class="img-responsive">
+      <img src="img/talentos individuales.jpeg" alt="Talento individual" class="img-responsive">
       <p class="Categorias">Talentos Individuales</p>    
     </div>
     <div class="col-sm-4"> 
-      <img src="TalentoDeportivo.jpeg" alt="Talento deportivo" class="img-responsive">
+      <img src="img/TalentoDeportivo.jpeg" alt="Talento deportivo" class="img-responsive">
       <p class="Categorias">Talentos Deportivos</p>    
     </div>
     <div class="col-sm-4">
@@ -47,6 +47,6 @@
     </div>
   </div>
 </div><br>
-<?php include 'PiePagina.php'; ?>
+<?php include 'includes/PiePagina.php'; ?>
 </body>
 </html>

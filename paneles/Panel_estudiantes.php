@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'conexion/db.php';
+include '../conexion/db.php';
 ?>
 
 <!DOCTYPE html>
@@ -8,14 +8,14 @@ include 'conexion/db.php';
 <head>
     <meta charset="UTF-8">
     <title>Panel Estudiante</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <div class="encabezado-panel">
         <h1>Bienvenido, <?php echo $_SESSION['nombre']; ?></h1>
-        <a href="editarPerfil.php"><button class="btn-editar">Editar Perfil</button></a>
+        <a href="../usuarios/editarPerfil.php"><button class="btn-editar">Editar Perfil</button></a>
+        <a href="../login/login.php"><button class="btn-editar">Cerrar sesion</button></a>
     </div>
-    <a href="login.php"><button>Cerrar sesion</button></a>
     <div class="Container-box">
         <div class="box-1">
             <h2>¿En qué consiste el festival?</h2>
@@ -49,7 +49,7 @@ include 'conexion/db.php';
     <h2>Registra tu participación</h2>
     <div class="cuerpo-formulario">
         <p>Selecciona la o las modalidades en las que deseas participar:</p>
-        <form method="POST" action="procesarParticipacion.php">
+        <form method="POST" action="../usuarios/procesarParticipacion.php">
             
             <input type="checkbox" name="modalidades[]" value="talento_individual" id="talento">
             <label for="talento">Talento individual</label>
@@ -73,5 +73,8 @@ include 'conexion/db.php';
         </form>
     </div>
 </div>
+
+<?php include '../includes/PiePagina.php'; ?>
+
 </body>
 </html>

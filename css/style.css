@@ -42,7 +42,11 @@
 
 body {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
-  background-color: #a2a3a5 !important; 
+  background-color: #a2a3a5 !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
 }
 
 body > .container-fluid{
@@ -96,13 +100,22 @@ p, .Categorias, ul{
 .pie{
     color: #000000;
 }
-
-.container-fluid{
-  background-color: #187f3f;
+main.container-fluid {
+    background-color: transparent;
+    padding: 20px;
 }
-footer {
-  margin-top: auto;
-  padding: 25px;
+.container-fluid{
+  background-color: transparent;
+}
+footer.pie-pagina {
+    margin-top: auto;
+    padding: 25px;
+    background-color: #187f3f !important;
+    color: white !important;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 /*-------------------------------------------*/
 .Categorias{
@@ -215,3 +228,30 @@ footer {
     cursor: pointer;
 }
 /*---------------------------------------*/
+/*Tabla panel docente*/
+.tabla-participaciones {
+    width: 100%;
+    border-collapse: collapse; /* elimina el espacio doble entre bordes */
+    margin-top: 20px;
+}
+
+.tabla-participaciones th,
+.tabla-participaciones td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.tabla-participaciones th {
+    background-color: #fdd94e;
+    color: #000000;
+}
+
+.tabla-participaciones tr:nth-child(even) {
+    background-color: #5dc7d0; /* filas alternas con color diferente */
+}
+
+.tabla-participaciones tr:hover {
+    background-color: #e0d0f0; /* resalta la fila al pasar el mouse */
+}
+/*-----------------------------------------*/

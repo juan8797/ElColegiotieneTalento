@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'conexion/db.php';
+include '../conexion/db.php';
 
 if (!isset($_SESSION['id'])) {
     header("Location: login.php");
@@ -75,7 +75,13 @@ $stmt->execute();
 $result  = $stmt->get_result();
 $usuario = $result->fetch_assoc();
 
-$pagina_volver = ($usuario['rol'] === 'docente') ? 'Panel_docentes.php' : 'Panel_estudiantes.php';
+if ($usuario['rol'] === 'docente') {
+    $pagina_volver = '../paneles/Panel_docentes.php';
+} elseif ($usuario['rol'] === 'jurado') {
+    $pagina_volver = '../paneles/Panel_jurado.php';
+} else {
+    $pagina_volver = '../paneles/Panel_estudiantes.php';
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -84,7 +90,7 @@ $pagina_volver = ($usuario['rol'] === 'docente') ? 'Panel_docentes.php' : 'Panel
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Perfil — El Colegio Tiene Talento</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <div class="actualizar">

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'conexion/db.php';
+include '../conexion/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario_id = $_SESSION['id'];
@@ -18,6 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conexion->query($sql);
     }
 
-    header("Location: Panel_estudiantes.php");
+    header("Location: ../paneles/Panel_estudiantes.php");
     exit();
 }

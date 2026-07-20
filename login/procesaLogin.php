@@ -18,11 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['rol']    = $usuario['rol'];
 
             if ($usuario['rol'] === 'docente') {
-            header("Location: ../Panel_docentes.php");
+            header("Location: ../paneles/Panel_docentes.php");
             } elseif ($usuario['rol'] === 'jurado') {
-                header("Location: ../Panel_jurado.php");
+                header("Location: ../paneles/Panel_jurado.php");
                 } else {
-                    header("Location: ../Panel_estudiantes.php");
+                    header("Location: ../paneles/Panel_estudiantes.php");
             }
             exit();
         } else {
