@@ -1,10 +1,14 @@
 .menu{
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: #fdd94e;
   text-align: center;
-  padding: 14px 16px;
+  padding: 0 40px;
   margin-bottom: 20px;
   border-radius: 5px;
+  gap: 30px;
 }
 
 .menu a{
@@ -18,6 +22,14 @@
 
 .menu a:hover{
     color: black;
+}
+.logo-menu{
+  height: 50px;
+  width: auto;
+}
+.menu-enlaces{
+  display: flex;
+  gap: 20px;
 }
 
 #menus{
@@ -77,20 +89,19 @@ p, .Categorias, ul{
     text-align: center;
     background-color: #5dc7d0;
 }
-
 .Color-text{
   color: #000000;
 }
 /*------------------------------------------*/
 .imgcentral{
-  width: 60%;
+  width: 80%;
   height: auto;
   display: block;
   margin: 0 auto;
 }
 
 .img-responsive{
-  width: 60%;
+  width: 100%;
   height: auto;
   display: block;
   margin: 20px auto;
@@ -120,6 +131,7 @@ footer.pie-pagina {
 /*-------------------------------------------*/
 .Categorias{
   color: #000000;
+  
 }
 
 .btn-primary{
