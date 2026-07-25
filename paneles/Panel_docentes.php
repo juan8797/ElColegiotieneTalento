@@ -46,8 +46,11 @@ $resultado = $conexion->query($sql);
         <a href="../usuarios/editarPerfil.php"><button class="btn-editar">Editar Perfil</button></a>
         <a href="../login/login.php"><button class="btn-editar">Cerrar sesion</button></a>
     </div>
-    <table class="tabla-participaciones">
-        <thead>
+    <div class="explanation-table">
+        <p class="text-explanation">Estimado docente, <?php echo $_SESSION['nombre']; ?>  la intencion de la tabla acontinuacon es demostrar los estudiantes que van a participar en el festival y en que van a participar. su labor sera aprobar o rechasar la solcitud de participacon del estudiante dependiendo como considere que se encuentra su acto en el caso de que consedere nesesario aportar con un comentario ouna sugerencia podra hacerlo.</p>
+    </div>
+        <table class="tabla-participaciones">
+            <thead>
             <tr>
                 <th>Nombre</th>
                 <th>Apellido</th>

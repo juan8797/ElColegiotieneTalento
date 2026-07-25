@@ -13,7 +13,7 @@
 
 .menu a{
     flex: 1;
-    display:flexbox;
+    display: flexbox;
     color: black;
     text-align: center;
     padding: 7px 8px ;
@@ -27,9 +27,14 @@
   height: 50px;
   width: auto;
 }
-.menu-enlaces{
-  display: flex;
-  gap: 20px;
+.menu-enlaces {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    white-space: nowrap;
 }
 
 #menus{
@@ -243,7 +248,7 @@ footer.pie-pagina {
 /*Tabla panel docente*/
 .tabla-participaciones {
     width: 100%;
-    border-collapse: collapse; /* elimina el espacio doble entre bordes */
+    border-collapse: collapse; 
     margin-top: 20px;
 }
 
@@ -260,10 +265,49 @@ footer.pie-pagina {
 }
 
 .tabla-participaciones tr:nth-child(even) {
-    background-color: #5dc7d0; /* filas alternas con color diferente */
+    background-color: #5dc7d0; 
 }
 
 .tabla-participaciones tr:hover {
-    background-color: #e0d0f0; /* resalta la fila al pasar el mouse */
+    background-color: #e0d0f0; 
+}
+.explanation-table{
+  background-color: #ffffff;
+  padding: 8px;
+}
+.text-explanation{
+  font-weight: bold;
 }
 /*-----------------------------------------*/
+/*Panel de administrador*/
+.form-admin {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.form-admin input[type="text"] {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-admin button {
+    padding: 8px 15px;
+    background-color: #630699;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.mensaje-admin {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+/*--------------------------------------*/

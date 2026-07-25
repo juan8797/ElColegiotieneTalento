@@ -21,9 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: ../paneles/Panel_docentes.php");
             } elseif ($usuario['rol'] === 'jurado') {
                 header("Location: ../paneles/Panel_jurado.php");
-                } else {
-                    header("Location: ../paneles/Panel_estudiantes.php");
-            }
+                } elseif ($usuario['rol'] === 'admin'){
+                    header("Location: ../paneles/panel_admin.php");
+                    }else{
+                        header("Location: ../paneles/Panel_estudiantes.php");
+                    }
             exit();
         } else {
             echo "Contraseña incorrecta.";
