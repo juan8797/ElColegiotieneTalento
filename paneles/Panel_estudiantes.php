@@ -1,6 +1,19 @@
 <?php
 session_start();
 include '../conexion/db.php';
+
+$id_estudiante = $_SESSION['id'];
+
+$stmt = $conexion->prepare("SELECT g.nombre FROM usuarios u 
+                            LEFT JOIN grados g ON u.grado_id = g.id 
+                            WHERE u.id = ?");
+$stmt->bind_param("i", $id_estudiante);
+$stmt->execute();
+$resultado_grado = $stmt->get_result();
+$grado = $resultado_grado->fetch_assoc();
+$stmt->close();
+$nombre_grado = $grado['nombre'] ?? 'Sin grado';
+
 ?>
 
 <!DOCTYPE html>
@@ -12,9 +25,12 @@ include '../conexion/db.php';
 </head>
 <body>
     <div class="encabezado-panel">
-        <h1>Bienvenido, <?php echo $_SESSION['nombre']; ?></h1>
+    <h1>Bienvenido, <?php echo $_SESSION['nombre']; ?></h1>
+    <div class="lado-derecho-panel">
+        <span class="recuadro-grado">Grado: <?= htmlspecialchars($nombre_grado) ?></span>
         <a href="../usuarios/editarPerfil.php"><button class="btn-editar">Editar Perfil</button></a>
         <a href="../login/login.php"><button class="btn-editar">Cerrar sesion</button></a>
+    </div>
     </div>
     <div class="Container-box">
         <div class="box-1">

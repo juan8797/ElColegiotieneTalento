@@ -20,14 +20,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
 }
 
+$id_docente = $_SESSION['id'];
+
+$stmt = $conexion->prepare("SELECT grado_id FROM usuarios WHERE id = ?");
+$stmt->bind_param("i", $id_docente);
+$stmt->execute();
+$resultado_docente = $stmt->get_result();
+$docente = $resultado_docente->fetch_assoc();
+$stmt->close();
+
+$grado_id_docente = $docente['grado_id'];
+
+$stmt = $conexion->prepare("SELECT g.nombre FROM grados g WHERE g.id = ?");
+$stmt->bind_param("i", $grado_id_docente);
+$stmt->execute();
+$resultado_grado = $stmt->get_result();
+$grado = $resultado_grado->fetch_assoc();
+$stmt->close();
+$nombre_grado = $grado['nombre'] ?? 'Sin grado';
 
 $sql = "SELECT p.id, u.nombre, u.apellido, p.modalidad, p.nombre_acto, p.estado, p.comentario
         FROM participaciones p
         INNER JOIN usuarios u ON p.usuario_id = u.id
         WHERE u.rol = 'estudiante'
+        AND u.grado_id = ?
         ORDER BY p.estado ASC, u.apellido ASC";
 
-$resultado = $conexion->query($sql);
+$stmt = $conexion->prepare($sql);
+$stmt->bind_param("i", $grado_id_docente);
+$stmt->execute();
+$resultado = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -42,10 +64,13 @@ $resultado = $conexion->query($sql);
 
 <main class="container-fluid">
     <div class="encabezado-panel">
-        <h1>Bienvenido docente, <?php echo $_SESSION['nombre']; ?></h1>
+    <h1>Bienvenido docente, <?php echo $_SESSION['nombre']; ?></h1>
+    <div class="lado-derecho-panel">
+        <span class="recuadro-grado">Grado: <?= htmlspecialchars($nombre_grado) ?></span>
         <a href="../usuarios/editarPerfil.php"><button class="btn-editar">Editar Perfil</button></a>
         <a href="../login/login.php"><button class="btn-editar">Cerrar sesion</button></a>
     </div>
+</div>
     <div class="explanation-table">
         <p class="text-explanation">Estimado docente, <?php echo $_SESSION['nombre']; ?>  la intencion de la tabla acontinuacon es demostrar los estudiantes que van a participar en el festival y en que van a participar. su labor sera aprobar o rechasar la solcitud de participacon del estudiante dependiendo como considere que se encuentra su acto en el caso de que consedere nesesario aportar con un comentario ouna sugerencia podra hacerlo.</p>
     </div>

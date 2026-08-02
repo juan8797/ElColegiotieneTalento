@@ -296,7 +296,7 @@ footer.pie-pagina {
 
 .form-admin button {
     padding: 8px 15px;
-    background-color: #630699;
+    background-color: #43546a;
     color: white;
     border: none;
     border-radius: 4px;
@@ -310,4 +310,164 @@ footer.pie-pagina {
     border-radius: 4px;
     margin: 10px 0;
 }
+
+.titulo-seccion {
+    color: white;
+    padding: 20px 30px 0px 30px;
+}
+
+.seccion-usuarios {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 30px;
+}
+
+.seccion-usuarios h3 {
+    color: #630699;
+    margin-bottom: 15px;
+}
+/* Menú admin */
+.menu-admin {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background-color: #43546a;
+    color: white;
+}
+
+.titulo-admin {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.menu-admin-enlaces {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.menu-admin-enlaces a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.menu-admin-enlaces a:hover {
+    text-decoration: underline;
+}
+
+.btn-cerrar {
+    background-color: #5dc7d0;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: #000000 !important;
+}
+
+/* Tarjetas panel principal */
+.bienvenida-admin {
+    padding: 30px;
+    text-align: center;
+    color: white;
+}
+
+.tarjetas-admin {
+    display: flex;
+    gap: 20px;
+    padding: 20px 30px;
+    flex-wrap: wrap;
+}
+
+.tarjeta-admin {
+    background-color: white;
+    border-radius: 8px;
+    padding: 25px;
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+}
+
+.tarjeta-admin h3 {
+    color: #630699;
+    margin-bottom: 10px;
+}
+
+.tarjeta-admin p {
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.btn-admin {
+    background-color: #630699;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.btn-admin:hover {
+    background-color: #4a0073;
+    color: white;
+}
 /*--------------------------------------*/
+/*editar usuario admin*/
+.campo-editar {
+    margin-bottom: 15px;
+}
+
+.campo-editar label {
+    display: block;
+    color: #333;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.botones-editar {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+/*----------------------------------------*/
+.lado-derecho-panel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.recuadro-grado {
+    background-color: #5dc7d0;
+    color: #000000;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+}
+/* panel jurado*/
+.form-observacion {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.btn-guardar-obs {
+    background-color: #630699;
+    color: white;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.btn-guardar-obs:hover {
+    background-color: #4a0073;
+}

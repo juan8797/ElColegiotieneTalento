@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } elseif ($usuario['rol'] === 'jurado') {
                 header("Location: ../paneles/Panel_jurado.php");
                 } elseif ($usuario['rol'] === 'admin'){
-                    header("Location: ../paneles/panel_admin.php");
+                    header("Location: ../paneles/panel_admin_principal.php");
                     }else{
                         header("Location: ../paneles/Panel_estudiantes.php");
                     }

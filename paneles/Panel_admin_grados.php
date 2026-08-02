@@ -54,11 +54,15 @@ $resultado = $conexion->query("SELECT * FROM grados ORDER BY nombre ASC");
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+
+    <?php include '../includes/menu_admin.php'; ?>
+
 <main class="container-fluid">
     <div class="encabezado-panel">
         <h2>Panel Administrador — Gestión de Grados</h2>
-        <a href="../usuarios/editarPerfil.php"><button class="btn-editar">Editar Perfil</button></a>
-        <a href="../login/login.php"><button class="btn-editar">Cerrar sesion</button></a>
+    </div>
+    <div class="explanation-table">
+        <p class="text-explanation">Señor administrador le informo que este apartado tiene como objetivo perminitirle ingresar los frupo y grados de los cuales dispone la institucion en el año lectivo actual en esta podra eliminar o editar grupos anteriormente ingresados.</p>
     </div>
     <?php if ($mensaje): ?>
         <p class="mensaje-admin"><?= htmlspecialchars($mensaje) ?></p>
