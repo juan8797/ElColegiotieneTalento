@@ -10,7 +10,6 @@ require_once '../conexion/db.php';
 
 $mensaje = "";
 
-// Agregar grado
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregar'])) {
     $nombre = $_POST['nombre'];
     $stmt = $conexion->prepare("INSERT INTO grados (nombre) VALUES (?)");
@@ -20,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregar'])) {
     $mensaje = "Grado agregado correctamente";
 }
 
-// Eliminar grado
 if (isset($_GET['eliminar'])) {
     $id = $_GET['eliminar'];
     $stmt = $conexion->prepare("DELETE FROM grados WHERE id = ?");
@@ -30,7 +28,6 @@ if (isset($_GET['eliminar'])) {
     $mensaje = "Grado eliminado correctamente";
 }
 
-// Editar grado
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
     $id     = $_POST['id'];
     $nombre = $_POST['nombre_editar'];
@@ -41,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
     $mensaje = "Grado actualizado correctamente";
 }
 
-// Cargar todos los grados
 $resultado = $conexion->query("SELECT * FROM grados ORDER BY nombre ASC");
 ?>
 
@@ -68,7 +64,6 @@ $resultado = $conexion->query("SELECT * FROM grados ORDER BY nombre ASC");
         <p class="mensaje-admin"><?= htmlspecialchars($mensaje) ?></p>
     <?php endif; ?>
 
-    <!-- Formulario agregar -->
     <div class="form-admin">
         <h3>Agregar nuevo grado</h3>
         <form action="" method="POST">
@@ -77,7 +72,6 @@ $resultado = $conexion->query("SELECT * FROM grados ORDER BY nombre ASC");
         </form>
     </div>
 
-    <!-- Tabla de grados -->
     <table class="tabla-participaciones">
         <thead>
             <tr>

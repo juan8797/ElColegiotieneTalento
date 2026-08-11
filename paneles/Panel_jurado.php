@@ -19,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
 }
 
-// Consulta JOIN — solo estudiantes con talento_individual aprobados
 $sql = "SELECT p.id, u.nombre, u.apellido, g.nombre AS grado, p.nombre_acto, p.observacion_jurado
         FROM participaciones p
         INNER JOIN usuarios u ON p.usuario_id = u.id
@@ -51,7 +50,6 @@ $resultado = $conexion->query($sql);
 
 <main class="container-fluid">
 
-    <!-- Explicación -->
     <div class="explanation-table">
         <p class="text-explanation">
             Estimado jurado, <?= $_SESSION['nombre'] ?>, en este panel podrás ver los estudiantes 
@@ -60,7 +58,7 @@ $resultado = $conexion->query($sql);
         </p>
     </div>
 
-    <!-- Tabla talento individual -->
+
     <section class="seccion-usuarios">
         <h3>Participantes — Talento Individual</h3>
         <table class="tabla-participaciones">

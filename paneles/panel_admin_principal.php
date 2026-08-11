@@ -35,7 +35,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
         <div class="tarjeta-admin">
             <h3>👥 Usuarios</h3>
             <p>Visualiza todos los usuarios registrados en el sistema organizados por rol. Puedes ver los estudiantes con su grado asignado, los docentes con el grado que tienen a cargo y los jurados del festival.</p>
-            <a href="/ElColegiotieneTalento/paneles/usuarios_admin.php" class="btn-admin">Ir a Usuarios</a>
+            <a href="/ElColegiotieneTalento/paneles/panel_admin_usuarios.php" class="btn-admin">Ir a Usuarios</a>
         </div>
     </div>
 </main>

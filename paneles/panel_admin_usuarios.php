@@ -8,9 +8,12 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
 
 require_once '../conexion/db.php';
 
-// Eliminar usuario
 if (isset($_GET['eliminar'])) {
     $id = $_GET['eliminar'];
+    $stmt = $conexion->prepare("DELETE FROM participaciones WHERE usuario_id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
     $stmt = $conexion->prepare("DELETE FROM usuarios WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -51,7 +54,6 @@ $jurados = $conexion->query("SELECT id, nombre, apellido, correo
 
     <h2 class="titulo-seccion">Usuarios Registrados</h2>
 
-    <!-- Estudiantes -->
     <section class="seccion-usuarios">
         <h3>Estudiantes</h3>
         <table class="tabla-participaciones">
@@ -84,7 +86,6 @@ $jurados = $conexion->query("SELECT id, nombre, apellido, correo
         </table>
     </section>
 
-    <!-- Docentes -->
     <section class="seccion-usuarios">
         <h3>Docentes</h3>
         <table class="tabla-participaciones">
@@ -117,7 +118,6 @@ $jurados = $conexion->query("SELECT id, nombre, apellido, correo
         </table>
     </section>
 
-    <!-- Jurados -->
     <section class="seccion-usuarios">
         <h3>Jurados</h3>
         <table class="tabla-participaciones">
