@@ -29,13 +29,19 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
         <div class="tarjeta-admin">
             <h3>📋 Grados y Grupos</h3>
             <p>Administra los grados y grupos disponibles para el registro. Puedes agregar nuevos grados, editarlos o eliminarlos. Los estudiantes y docentes seleccionan su grado al momento de registrarse.</p>
-            <a href="/ElColegiotieneTalento/paneles/panel_admin_grados.php" class="btn-admin">Ir a Grados</a>
+            <a href="/ElColegiotieneTalento/paneles/Panel_admin_grados.php" class="btn-admin">Ir a Grados</a>
         </div>
 
         <div class="tarjeta-admin">
             <h3>👥 Usuarios</h3>
             <p>Visualiza todos los usuarios registrados en el sistema organizados por rol. Puedes ver los estudiantes con su grado asignado, los docentes con el grado que tienen a cargo y los jurados del festival.</p>
             <a href="/ElColegiotieneTalento/paneles/panel_admin_usuarios.php" class="btn-admin">Ir a Usuarios</a>
+        </div>
+
+        <div class="tarjeta-admin">
+            <h3>⭐ Criterios de Calificación</h3>
+            <p>Define y gestiona los criterios y porcentajes de ponderación que utilizarán los jurados para evaluar las presentaciones de Bailes Grupales.</p>
+            <a href="/ElColegiotieneTalento/paneles/panel_criterios.php" class="btn-admin">Ir a Criterios</a>
         </div>
     </div>
 </main>

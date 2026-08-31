@@ -28,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $tipo    = "error";
 
     } else {
-        // Verificar que el correo no esté en uso por otro usuario
         $check = $conexion->prepare("SELECT id FROM usuarios WHERE correo = ? AND id != ?");
         $check->bind_param("si", $correo, $id);
         $check->execute();
@@ -39,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $tipo    = "error";
 
         } elseif (!empty($nueva_pass)) {
-            // Quiere cambiar contraseña
             if ($nueva_pass !== $confirmar) {
                 $mensaje = "Las contraseñas no coinciden.";
                 $tipo    = "error";
@@ -56,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $tipo    = "exito";
             }
         } else {
-            // Solo datos personales
             $stmt = $conexion->prepare("UPDATE usuarios SET nombre=?, apellido=?, correo=? WHERE id=?");
             $stmt->bind_param("sssi", $nombre, $apellido, $correo, $id);
             $stmt->execute();
@@ -68,7 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// ── CARGAR DATOS ACTUALES ────────────────────────────────────────────────────
 $stmt = $conexion->prepare("SELECT nombre, apellido, correo, rol, fecha_registro FROM usuarios WHERE id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();

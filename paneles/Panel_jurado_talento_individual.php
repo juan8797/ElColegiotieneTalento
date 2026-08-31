@@ -8,7 +8,6 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'jurado') {
 
 include '../conexion/db.php';
 
-// Procesar observación
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_participacion    = $_POST['id_participacion'];
     $observacion_jurado  = $_POST['observacion_jurado'];
@@ -40,11 +39,12 @@ $resultado = $conexion->query($sql);
 </head>
 <body>
 
+    <?php include '../includes/menu_jurado.php'; ?>
+
 <div class="encabezado-panel">
     <h1>Bienvenido jurado, <?= $_SESSION['nombre'] ?></h1>
     <div class="lado-derecho-panel">
         <a href="../usuarios/editarPerfil.php"><button class="btn-editar">Editar Perfil</button></a>
-        <a href="../login/login.php"><button class="btn-editar">Cerrar sesion</button></a>
     </div>
 </div>
 

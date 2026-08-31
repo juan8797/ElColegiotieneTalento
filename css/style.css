@@ -673,7 +673,7 @@ p, .Categorias, ul {
 }
 
 .tarjeta-admin h3 {
-  color: var(--color-accent-purple);
+  color: var(--color-text-main);
   margin-bottom: 15px;
   font-size: 1.4rem;
 }
@@ -687,7 +687,7 @@ p, .Categorias, ul {
 }
 
 .btn-admin {
-  background-color: var(--color-accent-purple);
+  background-color: var(--color-accent-teal-hover);
   color: var(--color-light-white) !important;
   padding: 10px 24px;
   border-radius: var(--radius-sm);
@@ -702,8 +702,8 @@ p, .Categorias, ul {
 }
 
 .btn-admin:hover {
-  background-color: var(--color-accent-purple-hover);
-  color: var(--color-light-white) !important;
+  background-color: var(--color-accent-teal-hover);
+  color: var(--color-text-main) !important;
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
 }
@@ -973,8 +973,18 @@ p, .Categorias, ul {
 
 /* Perfil y avisos */
 .actualizar {
-  max-width: 600px;
+  width: 100%;
+  max-width: 540px;
+  margin: 35px auto;
   padding: 0 15px;
+  flex: 1;
+}
+
+.perfil-subtitulo {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
 }
 
 .info-pie {
@@ -1080,4 +1090,94 @@ footer.pie-pagina p {
     width: 100%;
     margin-bottom: 10px;
   }
+}
+
+.resumen-criterios {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px;
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  background-color: var(--color-bg-card);
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.resumen-criterios.correcto {
+  border-left: 5px solid var(--color-footer-green);
+}
+
+.resumen-criterios.alerta {
+  border-left: 5px solid var(--color-danger-btn);
+}
+
+.resumen-info {
+  font-size: 1.05rem;
+  color: var(--color-text-main);
+}
+
+.resumen-info strong {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  margin-left: 6px;
+}
+
+.badge-estado-ok {
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+  border: 1px solid var(--color-success-border);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 13.5px;
+  display: inline-block;
+}
+
+.badge-estado-alerta {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger-text);
+  border: 1px solid var(--color-danger-border);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 13.5px;
+  display: inline-block;
+}
+
+.badge-porcentaje {
+  background-color: var(--color-accent-teal);
+  color: var(--color-text-dark);
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 13.5px;
+  display: inline-block;
+}
+
+.card-confirmar-eliminar {
+  max-width: 560px;
+  margin: 40px auto;
+  text-align: center;
+  padding: 35px 30px;
+}
+
+.card-confirmar-eliminar .icono-peligro {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.card-confirmar-eliminar h2 {
+  color: var(--color-danger-text);
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+}
+
+.card-confirmar-eliminar .texto-confirmar {
+  color: var(--color-text-main);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 15px 0;
 }
