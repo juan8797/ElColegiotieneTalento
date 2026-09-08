@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once '../conexion/db.php';
+require_once '../../conexion/db.php';
 
 if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'admin') {
     header('Location: ../login/login.php');
@@ -14,6 +14,7 @@ if (!$id || !is_numeric($id)) {
     exit();
 }
 
+// Traemos el criterio para mostrar su nombre en la pregunta de confirmación
 $stmt = $conexion->prepare("SELECT id, nombre_criterio, valor FROM criterios WHERE id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -31,11 +32,11 @@ if (!$criterio) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmar Eliminación — Panel Administrador</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 
-    <?php include '../includes/menu_admin.php'; ?>
+    <?php include '../../includes/menu_admin.php'; ?>
 
     <main class="container-fluid">
         <div class="seccion-usuarios card-confirmar-eliminar">
@@ -60,7 +61,7 @@ if (!$criterio) {
         </div>
     </main>
 
-    <?php include '../includes/PiePagina.php'; ?>
+    <?php include '../../includes/PiePagina.php'; ?>
 
 </body>
 </html>

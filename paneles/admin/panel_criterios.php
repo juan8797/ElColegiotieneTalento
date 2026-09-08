@@ -1,16 +1,19 @@
 <?php
 session_start();
 
-require_once '../conexion/db.php';
+require_once '../../conexion/db.php';
 
+// Protección: solo el admin puede entrar aquí
 if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'admin') {
     header('Location: ../login/login.php');
     exit();
 }
 
+// Traemos todos los criterios ordenados por id
 $sql = "SELECT id, nombre_criterio, valor FROM criterios ORDER BY id ASC";
 $resultado = $conexion->query($sql);
 
+// Sumamos el total de porcentajes para mostrar alerta si no da 100%
 $suma_total = 0;
 $criterios = [];
 if ($resultado && $resultado->num_rows > 0) {
@@ -29,11 +32,11 @@ unset($_SESSION['mensaje']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criterios de Calificación — Panel Administrador</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 
-    <?php include '../includes/menu_admin.php'; ?>
+    <?php include '../../includes/menu_admin.php'; ?>
 
     <main class="container-fluid">
         <div class="encabezado-panel">
@@ -108,7 +111,7 @@ unset($_SESSION['mensaje']);
         </section>
     </main>
 
-    <?php include '../includes/PiePagina.php'; ?>
+    <?php include '../../includes/PiePagina.php'; ?>
 
 </body>
 </html>

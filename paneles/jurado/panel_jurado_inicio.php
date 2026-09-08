@@ -12,16 +12,16 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'jurado') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Jurado - Inicio</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 
-    <?php include '../includes/menu_jurado.php'; ?>
+    <?php include '../../includes/menu_jurado.php'; ?>
 
     <div class="encabezado-panel">
         <h1>Bienvenido jurado, <?= $_SESSION['nombre'] ?></h1>
         <div class="lado-derecho-panel">
-            <a href="../usuarios/editarPerfil.php"><button class="btn-editar">Editar Perfil</button></a>
+            <a href="../../usuarios/editarPerfil.php"><button class="btn-editar">Editar Perfil</button></a>
         </div>
     </div>
 

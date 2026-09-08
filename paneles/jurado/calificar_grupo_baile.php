@@ -6,7 +6,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'jurado') {
     exit();
 }
 
-include '../conexion/db.php';
+include '../../conexion/db.php';
 
 $grado_id = $_GET['grado_id'] ?? $_POST['grado_id'] ?? null;
 if (!$grado_id || !is_numeric($grado_id)) {
@@ -68,11 +68,11 @@ $criterios = $stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calificar - <?= htmlspecialchars($grado['nombre']) ?></title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 
-    <?php include '../includes/menu_jurado.php'; ?>
+    <?php include '../../includes/menu_jurado.php'; ?>
 
     <div class="encabezado-panel">
         <h1>Calificar: <?= htmlspecialchars($grado['nombre']) ?></h1>

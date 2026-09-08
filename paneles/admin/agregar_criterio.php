@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once '../conexion/db.php';
+require_once '../../conexion/db.php';
 
 if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'admin') {
     header('Location: ../login/login.php');
@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($valor <= 0 || $valor > 100) {
         $error = "El valor debe estar entre 0 y 100.";
     } else {
+        // Validamos que la suma total (incluyendo el nuevo criterio) no pase de 100
         $sql_suma = "SELECT SUM(valor) AS total FROM criterios";
         $resultado_suma = $conexion->query($sql_suma);
         $suma_actual = $resultado_suma->fetch_assoc()['total'] ?? 0;
@@ -46,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+// Calculamos información actual si carga la página
 if (!isset($suma_actual)) {
     $sql_suma = "SELECT SUM(valor) AS total FROM criterios";
     $resultado_suma = $conexion->query($sql_suma);
@@ -59,11 +61,11 @@ if (!isset($suma_actual)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Criterio — Panel Administrador</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 
-    <?php include '../includes/menu_admin.php'; ?>
+    <?php include '../../includes/menu_admin.php'; ?>
 
     <main class="container-fluid">
         <div class="seccion-usuarios" style="max-width: 620px; margin: 30px auto;">
@@ -106,7 +108,7 @@ if (!isset($suma_actual)) {
         </div>
     </main>
 
-    <?php include '../includes/PiePagina.php'; ?>
+    <?php include '../../includes/PiePagina.php'; ?>
 
 </body>
 </html>

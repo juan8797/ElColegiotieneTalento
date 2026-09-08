@@ -6,7 +6,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'jurado') {
     exit();
 }
 
-include '../conexion/db.php';
+include '../../conexion/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_participacion    = $_POST['id_participacion'];
@@ -35,14 +35,14 @@ $resultado = $conexion->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Jurado</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 
-    <?php include '../includes/menu_jurado.php'; ?>
+    <?php include '../../includes/menu_jurado.php'; ?>
 
 <div class="encabezado-panel">
-    <h1>Bienvenido jurado, <?= $_SESSION['nombre'] ?></h1>
+    <h1>Talento Individual</h1>
     <div class="lado-derecho-panel">
         <a href="../usuarios/editarPerfil.php"><button class="btn-editar">Editar Perfil</button></a>
     </div>
@@ -96,7 +96,7 @@ $resultado = $conexion->query($sql);
 
 </main>
 
-<?php include '../includes/PiePagina.php'; ?>
+<?php include '../../includes/PiePagina.php'; ?>
 
 </body>
 </html>

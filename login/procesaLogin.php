@@ -20,9 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($usuario['rol'] === 'docente') {
             header("Location: ../paneles/Panel_docentes.php");
             } elseif ($usuario['rol'] === 'jurado') {
-                header("Location: ../paneles/Panel_jurado_inicio.php");
+                header("Location: ../paneles/jurado/Panel_jurado_inicio.php");
                 } elseif ($usuario['rol'] === 'admin'){
-                    header("Location: ../paneles/panel_admin_principal.php");
+                    header("Location: ../paneles/admin/panel_admin_principal.php");
                     }else{
                         header("Location: ../paneles/Panel_estudiantes.php");
                     }

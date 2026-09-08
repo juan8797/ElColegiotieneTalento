@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once '../conexion/db.php';
+require_once '../../conexion/db.php';
 
 if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'admin') {
     header('Location: ../login/login.php');
@@ -15,6 +15,8 @@ if (!$id || !is_numeric($id)) {
 }
 
 $error = null;
+
+// Traemos el criterio actual
 $stmt = $conexion->prepare("SELECT id, nombre_criterio, valor FROM criterios WHERE id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -35,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($valor <= 0 || $valor > 100) {
         $error = "El valor debe estar entre 0 y 100.";
     } else {
+        // Sumamos todos los criterios EXCEPTO el que estamos editando, y le sumamos el nuevo valor
         $sql_suma = "SELECT SUM(valor) AS total FROM criterios WHERE id != ?";
         $stmt_suma = $conexion->prepare($sql_suma);
         $stmt_suma->bind_param("i", $id);
@@ -63,10 +66,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->close();
         }
     }
+    // Si hubo error, mantenemos los datos que el usuario intentó guardar en el formulario
     $criterio['nombre_criterio'] = $nombre;
     $criterio['valor'] = $valor;
 }
 
+// Calculamos información si carga la página
 if (!isset($suma_otros)) {
     $sql_suma = "SELECT SUM(valor) AS total FROM criterios WHERE id != ?";
     $stmt_suma = $conexion->prepare($sql_suma);
@@ -83,11 +88,11 @@ if (!isset($suma_otros)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Criterio — Panel Administrador</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 
-    <?php include '../includes/menu_admin.php'; ?>
+    <?php include '../../includes/menu_admin.php'; ?>
 
     <main class="container-fluid">
         <div class="seccion-usuarios" style="max-width: 620px; margin: 30px auto;">
@@ -130,7 +135,7 @@ if (!isset($suma_otros)) {
         </div>
     </main>
 
-    <?php include '../includes/PiePagina.php'; ?>
+    <?php include '../../includes/PiePagina.php'; ?>
 
 </body>
 </html>

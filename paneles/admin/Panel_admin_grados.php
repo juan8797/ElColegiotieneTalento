@@ -6,14 +6,15 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
     exit();
 }
 
-require_once '../conexion/db.php';
+require_once '../../conexion/db.php';
 
 $mensaje = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregar'])) {
     $nombre = $_POST['nombre'];
-    $stmt = $conexion->prepare("INSERT INTO grados (nombre) VALUES (?)");
-    $stmt->bind_param("s", $nombre);
+    $categoria = $_POST['categoria'];
+    $stmt = $conexion->prepare("INSERT INTO grados (nombre, categoria) VALUES (?, ?)");
+    $stmt->bind_param("ss", $nombre, $categoria);
     $stmt->execute();
     $stmt->close();
     $mensaje = "Grado agregado correctamente";
@@ -29,10 +30,11 @@ if (isset($_GET['eliminar'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
-    $id     = $_POST['id'];
-    $nombre = $_POST['nombre_editar'];
-    $stmt = $conexion->prepare("UPDATE grados SET nombre = ? WHERE id = ?");
-    $stmt->bind_param("si", $nombre, $id);
+    $id        = $_POST['id'];
+    $nombre    = $_POST['nombre_editar'];
+    $categoria = $_POST['categoria_editar'];
+    $stmt = $conexion->prepare("UPDATE grados SET nombre = ?, categoria = ? WHERE id = ?");
+    $stmt->bind_param("ssi", $nombre, $categoria, $id);
     $stmt->execute();
     $stmt->close();
     $mensaje = "Grado actualizado correctamente";
@@ -47,11 +49,11 @@ $resultado = $conexion->query("SELECT * FROM grados ORDER BY nombre ASC");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Administrador</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 
-    <?php include '../includes/menu_admin.php'; ?>
+    <?php include '../../includes/menu_admin.php'; ?>
 
 <main class="container-fluid">
     <div class="encabezado-panel">
@@ -68,6 +70,12 @@ $resultado = $conexion->query("SELECT * FROM grados ORDER BY nombre ASC");
         <h3>Agregar nuevo grado</h3>
         <form action="" method="POST">
             <input type="text" name="nombre" placeholder="Ej: 11-01" required>
+            <select name="categoria" required>
+                <option value="">-- Selecciona categoría --</option>
+                <option value="primaria">Primaria</option>
+                <option value="pre-juvenil">Pre-juvenil</option>
+                <option value="juvenil">Juvenil</option>
+            </select>
             <button type="submit" name="agregar">Agregar</button>
         </form>
     </div>
@@ -77,6 +85,7 @@ $resultado = $conexion->query("SELECT * FROM grados ORDER BY nombre ASC");
             <tr>
                 <th>ID</th>
                 <th>Grado y Grupo</th>
+                <th>Categoría</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
@@ -86,17 +95,22 @@ $resultado = $conexion->query("SELECT * FROM grados ORDER BY nombre ASC");
             <tr>
                 <td><?= $grado['id'] ?></td>
                 <td><?= htmlspecialchars($grado['nombre']) ?></td>
+                <td><?= htmlspecialchars($grado['categoria'] ?? '—') ?></td>
                 <td>
                     <form action="" method="POST">
                         <input type="hidden" name="id" value="<?= $grado['id'] ?>">
-                        <input type="text" name="nombre_editar" 
+                        <input type="text" name="nombre_editar"
                                value="<?= htmlspecialchars($grado['nombre']) ?>">
+                        <select name="categoria_editar" required>
+                            <option value="primaria" <?= $grado['categoria'] === 'primaria' ? 'selected' : '' ?>>Primaria</option>
+                            <option value="pre-juvenil" <?= $grado['categoria'] === 'pre-juvenil' ? 'selected' : '' ?>>Pre-juvenil</option>
+                            <option value="juvenil" <?= $grado['categoria'] === 'juvenil' ? 'selected' : '' ?>>Juvenil</option>
+                        </select>
                         <button type="submit" name="editar">Guardar</button>
                     </form>
                 </td>
                 <td>
-                    <a href="?eliminar=<?= $grado['id'] ?>" 
-                       onclick="return confirm('¿Seguro que quieres eliminar este grado?')">
+                    <a href="?eliminar=<?= $grado['id'] ?>">
                        Eliminar
                     </a>
                 </td>
@@ -106,7 +120,7 @@ $resultado = $conexion->query("SELECT * FROM grados ORDER BY nombre ASC");
     </table>
 </main>
 
-<?php include '../includes/PiePagina.php'; ?>
+<?php include '../../includes/PiePagina.php'; ?>
 
 </body>
 </html>

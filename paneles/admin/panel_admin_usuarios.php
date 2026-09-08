@@ -6,7 +6,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
     exit();
 }
 
-require_once '../conexion/db.php';
+require_once '../../conexion/db.php';
 
 if (isset($_GET['eliminar'])) {
     $id = $_GET['eliminar'];
@@ -44,11 +44,11 @@ $jurados = $conexion->query("SELECT id, nombre, apellido, correo
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios - Panel Administrador</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 
-<?php include '../includes/menu_admin.php'; ?>
+<?php include '../../includes/menu_admin.php'; ?>
 
 <main class="container-fluid">
 
@@ -150,7 +150,7 @@ $jurados = $conexion->query("SELECT id, nombre, apellido, correo
 
 </main>
 
-<?php include '../includes/PiePagina.php'; ?>
+<?php include '../../includes/PiePagina.php'; ?>
 
 </body>
 </html>

@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: ../login/login.php");
+    header("Location: ../../login/login.php");
     exit();
 }
 ?>
@@ -13,11 +13,11 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Administrador</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 
-<?php include '../includes/menu_admin.php'; ?>
+<?php include '../../includes/menu_admin.php'; ?>
 
 <main class="container-fluid">
     <div class="bienvenida-admin">
@@ -46,7 +46,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
     </div>
 </main>
 
-<?php include '../includes/PiePagina.php'; ?>
+<?php include '../../includes/PiePagina.php'; ?>
 
 </body>
 </html>

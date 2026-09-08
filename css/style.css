@@ -980,17 +980,27 @@ p, .Categorias, ul {
   flex: 1;
 }
 
+.actualizar .card {
+  width: 100%;
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  border: none;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
 .perfil-subtitulo {
   color: var(--color-primary);
   font-weight: 700;
-  font-size: 1.1rem;
-  margin-bottom: 12px;
+  font-size: 1.15rem;
+  margin-bottom: 15px;
 }
 
 .info-pie {
   text-align: center;
   color: var(--color-light-white);
   margin-top: 15px;
+  margin-bottom: 25px;
   font-size: 14px;
 }
 
@@ -1092,6 +1102,7 @@ footer.pie-pagina p {
   }
 }
 
+/* Resumen de Criterios y Badges */
 .resumen-criterios {
   display: flex;
   align-items: center;
@@ -1156,6 +1167,7 @@ footer.pie-pagina p {
   display: inline-block;
 }
 
+/* Tarjeta de Confirmación de Eliminación */
 .card-confirmar-eliminar {
   max-width: 560px;
   margin: 40px auto;

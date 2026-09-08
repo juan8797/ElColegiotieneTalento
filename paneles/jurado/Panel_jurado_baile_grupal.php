@@ -6,7 +6,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'jurado') {
     exit();
 }
 
-include '../conexion/db.php';
+include '../../conexion/db.php';
 
 $sql = "SELECT g.id AS grado_id, g.nombre AS grado_nombre,
                COUNT(DISTINCT p.usuario_id) AS num_estudiantes,
@@ -32,11 +32,11 @@ $resultado = $stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Jurado - Baile Grupal</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 
-    <?php include '../includes/menu_jurado.php'; ?>
+    <?php include '../../includes/menu_jurado.php'; ?>
 
     <div class="encabezado-panel">
         <h1>Baile Grupal</h1>

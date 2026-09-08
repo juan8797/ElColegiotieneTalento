@@ -124,7 +124,7 @@ $grados = $conexion->query("SELECT * FROM grados ORDER BY nombre ASC");
 
             <div class="botones-editar">
                 <button type="submit" class="btn-admin">Guardar cambios</button>
-                <a href="../paneles/panel_admin_usuarios.php" class="btn-eliminar">Cancelar</a>
+                <a href="../paneles/admin/panel_admin_usuarios.php" class="btn-eliminar">Cancelar</a>
             </div>
         </form>
     </div>

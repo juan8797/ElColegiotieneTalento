@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once '../conexion/db.php';
+require_once '../../conexion/db.php';
 
 if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'admin') {
     header('Location: ../login/login.php');
