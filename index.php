@@ -13,14 +13,12 @@
 <?php
 require_once 'conexion/db.php';
 
-// Traemos las 3 secciones en el orden fijo que siempre han tenido
 $secciones = [];
 $resultadoSecciones = $conexion->query("SELECT * FROM secciones_index");
 while ($fila = $resultadoSecciones->fetch_assoc()) {
     $secciones[$fila['clave']] = $fila;
 }
 
-// Traemos la información institucional más reciente primero
 $resultadoInfo = $conexion->query("SELECT * FROM informacion_institucional ORDER BY fecha_publicacion DESC");
 ?>
 

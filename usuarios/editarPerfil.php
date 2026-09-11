@@ -74,9 +74,9 @@ $usuario = $result->fetch_assoc();
 if ($usuario['rol'] === 'docente') {
     $pagina_volver = '../paneles/Panel_docentes.php';
 } elseif ($usuario['rol'] === 'jurado') {
-    $pagina_volver = '../paneles/panel_jurado_inicio.php';
+    $pagina_volver = '../paneles/jurado/panel_jurado_inicio.php';
 } elseif ($usuario['rol'] === 'admin') {
-    $pagina_volver = '../paneles/panel_admin_principal.php';
+    $pagina_volver = '../paneles/admin/panel_admin_principal.php';
 } else {
     $pagina_volver = '../paneles/Panel_estudiantes.php';
 }

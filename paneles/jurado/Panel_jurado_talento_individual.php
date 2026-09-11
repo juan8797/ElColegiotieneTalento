@@ -44,7 +44,7 @@ $resultado = $conexion->query($sql);
 <div class="encabezado-panel">
     <h1>Talento Individual</h1>
     <div class="lado-derecho-panel">
-        <a href="../usuarios/editarPerfil.php"><button class="btn-editar">Editar Perfil</button></a>
+        <a href="../../usuarios/editarPerfil.php"><button class="btn-editar">Editar Perfil</button></a>
     </div>
 </div>
 

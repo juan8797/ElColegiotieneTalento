@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
 
         if (in_array($extension, $extensionesPermitidas)) {
             $nombreArchivo = 'seccion_' . $id . '_' . time() . '.' . $extension;
-            $rutaDestino = '../img/' . $nombreArchivo;
+            $rutaDestino = '../../img/' . $nombreArchivo;
 
             if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino)) {
                 $rutaImagen = 'img/' . $nombreArchivo;

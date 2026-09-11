@@ -48,7 +48,7 @@ while ($fila = $resultado->fetch_assoc()) {
     <div class="encabezado-panel">
         <h1>Ranking y Ganadores - Baile Grupal</h1>
         <div class="lado-derecho-panel">
-            <a href="../usuarios/editarPerfil.php"><button class="btn-editar">Editar Perfil</button></a>
+            <a href="../../usuarios/editarPerfil.php"><button class="btn-editar">Editar Perfil</button></a>
         </div>
     </div>
 

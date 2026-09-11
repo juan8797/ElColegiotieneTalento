@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'jurado') {
-    header("Location: ../login/login.php");
+    header("Location: ../../login/login.php");
     exit();
 }
 ?>
@@ -53,6 +53,15 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'jurado') {
                     y ayudar a definir el ganador de cada categoría.
                 </p>
                 <a href="Panel_jurado_baile_grupal.php" class="btn-admin">Ir al apartado</a>
+            </div>
+
+            <div class="tarjeta-admin">
+                <h3>Ranking / Ganadores</h3>
+                <p>
+                    Consulta el puntaje promedio de cada grado (calculado entre todos los
+                    jurados) organizado por categoría, y el ganador destacado de cada una.
+                </p>
+                <a href="Panel_jurado_ranking.php" class="btn-admin">Ir al apartado</a>
             </div>
 
         </section>

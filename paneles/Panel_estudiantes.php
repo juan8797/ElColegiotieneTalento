@@ -54,8 +54,8 @@ $nombre_grado = $grado['nombre'] ?? 'Sin grado';
                     </div>
                     <div class="box-4">
                         <h3>Baile Grupal</h3>
-                        <p>En esta categoría participan grupos de estudiantes que preparan una coreografía para presentar
-                            en el festival. Puede ser cualquier ritmo o estilo: salsa, urbano, folclor, k-pop, reggaeton,
+                        <p>En esta categoría participan estudiantes por grado que preparan una coreografía para presentar
+                            en el festival. Siguiendo una tematica preelegida: Coloneal, urbano, folclor, k-pop, reggaeton,
                             entre otros. Es una oportunidad de trabajo en equipo, coordinación y expresión artística
                             colectiva. El grupo debe inscribirse y presentarse unido el día del festival.</p>
                         </div>
