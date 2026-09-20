@@ -67,57 +67,80 @@ $resultado = $conexion->query("SELECT * FROM grados ORDER BY nombre ASC");
     <?php endif; ?>
 
     <div class="form-admin">
-        <h3>Agregar nuevo grado</h3>
-        <form action="" method="POST">
-            <input type="text" name="nombre" placeholder="Ej: 11-01" required>
-            <select name="categoria" required>
-                <option value="">-- Selecciona categoría --</option>
-                <option value="primaria">Primaria</option>
-                <option value="pre-juvenil">Pre-juvenil</option>
-                <option value="juvenil">Juvenil</option>
-            </select>
-            <button type="submit" name="agregar">Agregar</button>
+        <h3>➕ Agregar nuevo grado</h3>
+        <form action="" method="POST" class="form-admin-inline">
+            <div class="campo-inline">
+                <label class="form-label-inline">Grado y Grupo:</label>
+                <input type="text" name="nombre" class="form-control" placeholder="Ej: 11-01" required>
+            </div>
+            <div class="campo-inline">
+                <label class="form-label-inline">Categoría:</label>
+                <select name="categoria" class="form-control" required>
+                    <option value="">-- Selecciona categoría --</option>
+                    <option value="primaria">Primaria</option>
+                    <option value="pre-juvenil">Pre-juvenil</option>
+                    <option value="juvenil">Juvenil</option>
+                </select>
+            </div>
+            <div class="campo-inline-btn">
+                <button type="submit" name="agregar" class="btn-admin">Agregar Grado</button>
+            </div>
         </form>
     </div>
 
-    <table class="tabla-participaciones">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Grado y Grupo</th>
-                <th>Categoría</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($grado = $resultado->fetch_assoc()): ?>
-            <tr>
-                <td><?= $grado['id'] ?></td>
-                <td><?= htmlspecialchars($grado['nombre']) ?></td>
-                <td><?= htmlspecialchars($grado['categoria'] ?? '—') ?></td>
-                <td>
-                    <form action="" method="POST">
-                        <input type="hidden" name="id" value="<?= $grado['id'] ?>">
-                        <input type="text" name="nombre_editar"
-                               value="<?= htmlspecialchars($grado['nombre']) ?>">
-                        <select name="categoria_editar" required>
-                            <option value="primaria" <?= $grado['categoria'] === 'primaria' ? 'selected' : '' ?>>Primaria</option>
-                            <option value="pre-juvenil" <?= $grado['categoria'] === 'pre-juvenil' ? 'selected' : '' ?>>Pre-juvenil</option>
-                            <option value="juvenil" <?= $grado['categoria'] === 'juvenil' ? 'selected' : '' ?>>Juvenil</option>
-                        </select>
-                        <button type="submit" name="editar">Guardar</button>
-                    </form>
-                </td>
-                <td>
-                    <a href="?eliminar=<?= $grado['id'] ?>">
-                       Eliminar
-                    </a>
-                </td>
-            </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
+    <section class="seccion-usuarios">
+        <h3>Grados y Grupos Registrados</h3>
+        <table class="tabla-participaciones">
+            <thead>
+                <tr>
+                    <th style="width: 70px; text-align: center;">ID</th>
+                    <th>Grado y Grupo</th>
+                    <th style="text-align: center;">Categoría</th>
+                    <th style="min-width: 320px;">Edición Rápida</th>
+                    <th style="width: 100px; text-align: center;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($grado = $resultado->fetch_assoc()): ?>
+                <tr>
+                    <td style="text-align: center;"><strong>#<?= $grado['id'] ?></strong></td>
+                    <td><strong><?= htmlspecialchars($grado['nombre']) ?></strong></td>
+                    <td style="text-align: center;">
+                        <span class="badge-categoria badge-cat-<?= htmlspecialchars($grado['categoria'] ?? '') ?>">
+                            <?= htmlspecialchars(ucfirst($grado['categoria'] ?? '—')) ?>
+                        </span>
+                    </td>
+                    <td>
+                        <form action="" method="POST" class="form-edicion-inline-grado">
+                            <input type="hidden" name="id" value="<?= $grado['id'] ?>">
+                            <input type="text" name="nombre_editar" class="form-control form-control-sm"
+                                   value="<?= htmlspecialchars($grado['nombre']) ?>" placeholder="Grado" required>
+                            <select name="categoria_editar" class="form-control form-control-sm" required>
+                                <option value="primaria" <?= $grado['categoria'] === 'primaria' ? 'selected' : '' ?>>Primaria</option>
+                                <option value="pre-juvenil" <?= $grado['categoria'] === 'pre-juvenil' ? 'selected' : '' ?>>Pre-juvenil</option>
+                                <option value="juvenil" <?= $grado['categoria'] === 'juvenil' ? 'selected' : '' ?>>Juvenil</option>
+                            </select>
+                            <button type="submit" name="editar" class="btn-admin btn-sm">Guardar</button>
+                        </form>
+                    </td>
+                    <td style="text-align: center;">
+                        <a href="?eliminar=<?= $grado['id'] ?>" class="btn-eliminar"
+                           onclick="return confirm('¿Seguro que quieres eliminar este grado?')">
+                           Eliminar
+                        </a>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+                <?php if ($resultado->num_rows === 0): ?>
+                <tr>
+                    <td colspan="5" style="text-align: center; padding: 25px; color: var(--color-text-muted);">
+                        No hay grados registrados aún.
+                    </td>
+                </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </section>
 </main>
 
 <?php include '../../includes/PiePagina.php'; ?>

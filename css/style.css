@@ -1193,3 +1193,531 @@ footer.pie-pagina p {
   line-height: 1.6;
   margin: 15px 0;
 }
+
+/* ==========================================================================
+   ESTILOS ESPECÍFICOS PARA PANELES DE ADMINISTRACIÓN
+   ========================================================================== */
+
+/* 1. Secciones del Inicio (panel_secciones_index.php) */
+.seccion-admin-card {
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+  margin-bottom: 25px;
+  border-left: 5px solid var(--color-primary);
+}
+
+.seccion-admin-header {
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.seccion-admin-header h3 {
+  color: var(--color-primary);
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.seccion-admin-layout {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.seccion-admin-preview {
+  flex: 0 0 240px;
+  background-color: #f8fafc;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  text-align: center;
+}
+
+.seccion-admin-preview-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.seccion-admin-img {
+  width: 100%;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-xs);
+  display: block;
+  margin: 0 auto;
+}
+
+.seccion-admin-form {
+  flex: 1;
+  min-width: 280px;
+}
+
+.form-text-admin {
+  color: var(--color-text-muted);
+  font-size: 13px;
+  display: block;
+  margin-top: 5px;
+}
+
+/* 2. Información Institucional (panel_informacion.php) */
+.form-informacion-nueva {
+  max-width: 800px;
+}
+
+.texto-contenido-tabla {
+  font-size: 14px;
+  color: var(--color-text-main);
+  line-height: 1.5;
+  max-height: 120px;
+  overflow-y: auto;
+  word-break: break-word;
+}
+
+.badge-fecha {
+  background-color: var(--color-bg-box-gray);
+  color: var(--color-light-white);
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.form-edicion-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* 3. Gestión de Grados (Panel_admin_grados.php) */
+.form-admin-inline {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.campo-inline {
+  flex: 1;
+  min-width: 200px;
+}
+
+.form-label-inline {
+  display: block;
+  color: var(--color-text-main);
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.campo-inline-btn {
+  margin-bottom: 0;
+}
+
+.form-edicion-inline-grado {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.form-edicion-inline-grado input[type="text"] {
+  max-width: 110px;
+  min-width: 80px;
+}
+
+.form-edicion-inline-grado select {
+  max-width: 140px;
+  min-width: 110px;
+}
+
+.badge-categoria {
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 13px;
+  display: inline-block;
+  text-transform: capitalize;
+}
+
+.badge-cat-primaria {
+  background-color: var(--color-accent-teal);
+  color: var(--color-text-dark);
+}
+
+.badge-cat-pre-juvenil {
+  background-color: var(--color-accent-yellow);
+  color: var(--color-text-dark);
+}
+
+.badge-cat-juvenil {
+  background-color: var(--color-accent-purple);
+  color: var(--color-light-white);
+}
+
+/* 4. Cabecera integrada en Usuarios (panel_admin_usuarios.php) */
+.seccion-usuarios-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.seccion-usuarios-titulo h3 {
+  margin: 0 0 4px 0;
+}
+
+.subtitulo-seccion-admin {
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.seccion-usuarios-acciones {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Modificadores y Utilidades */
+.btn-sm {
+  padding: 6px 14px !important;
+  font-size: 13.5px !important;
+}
+
+.form-control-sm {
+  padding: 6px 10px !important;
+  font-size: 13.5px !important;
+}
+
+.mb-1 {
+  margin-bottom: 6px !important;
+}
+
+/* ==========================================================================
+   ESTILOS PARA CATEGORÍAS Y FLUJO DE ESTUDIANTES
+   ========================================================================== */
+
+/* 1. Formulario y Árbol de Categorías (panel_categorias.php) */
+.form-grid-categorias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  align-items: flex-end;
+  margin-top: 10px;
+}
+
+.form-grid-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-grid-item label {
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.form-grid-item .form-control {
+  width: 100%;
+}
+
+.form-grid-btn {
+  display: flex;
+  align-items: flex-end;
+}
+
+.arbol-categoria-item {
+  display: flex;
+  align-items: center;
+  font-size: 14.5px;
+}
+
+.arbol-guia {
+  color: var(--color-accent-teal);
+  font-weight: 700;
+  margin-right: 6px;
+  letter-spacing: -1px;
+}
+
+.arbol-nombre {
+  color: var(--color-text-main);
+  font-weight: 600;
+}
+
+.arbol-categoria-item.nivel-1 .arbol-nombre {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.arbol-categoria-item.nivel-2 .arbol-nombre {
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.arbol-categoria-item.nivel-3 .arbol-nombre {
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.badge-nivel {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12.5px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.badge-nivel-1 {
+  background-color: var(--color-primary);
+  color: var(--color-light-white);
+}
+
+.badge-nivel-2 {
+  background-color: var(--color-accent-teal);
+  color: var(--color-text-dark);
+}
+
+.badge-nivel-3 {
+  background-color: var(--color-accent-yellow);
+  color: var(--color-text-dark);
+}
+
+.col-accion {
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* 2. Sección de Modalidades del Estudiante (Panel_estudiantes.php) */
+.tabla-estudiante-container {
+  max-width: 780px;
+  margin: 30px auto;
+}
+
+.tabla-estudiante-container .cuerpo-formulario {
+  padding: 25px 30px;
+}
+
+.texto-modalidad {
+  font-weight: 600;
+  color: var(--color-text-main);
+  font-size: 15px;
+}
+
+/* 3. Asistente Paso a Paso / Wizard (seleccionar_categoria.php) */
+.card-wizard {
+  max-width: 620px;
+  margin: 30px auto;
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.wizard-header {
+  background-color: var(--color-primary);
+  color: var(--color-light-white);
+  padding: 22px 28px;
+  text-align: center;
+}
+
+.wizard-header h2 {
+  color: var(--color-light-white) !important;
+  margin: 0 0 6px 0;
+  font-size: 1.45rem;
+}
+
+.wizard-subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  margin: 0;
+}
+
+.wizard-subtitle strong {
+  color: var(--color-accent-yellow);
+}
+
+.wizard-body {
+  padding: 28px;
+  background-color: var(--color-bg-card);
+}
+
+.wizard-instruccion {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 18px;
+}
+
+.radio-cards-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.radio-card-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 18px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  background-color: #fafbfc;
+  transition: var(--transition-fast);
+}
+
+.radio-card-item:hover {
+  border-color: var(--color-accent-teal);
+  background-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xs);
+}
+
+.radio-card-item input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+  margin: 0 14px 0 0;
+  flex-shrink: 0;
+}
+
+.radio-card-item:has(input[type="radio"]:checked) {
+  border-color: var(--color-primary);
+  background-color: rgba(93, 199, 208, 0.12);
+  box-shadow: 0 0 0 2px rgba(67, 84, 106, 0.2);
+}
+
+.radio-card-content {
+  flex: 1;
+}
+
+.radio-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-main);
+  display: block;
+}
+
+.alerta-resumen-pasos {
+  background-color: rgba(93, 199, 208, 0.12);
+  border-left: 4px solid var(--color-accent-teal);
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 22px;
+  color: var(--color-text-main);
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+
+.wizard-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.wizard-actions .btn-volver {
+  margin: 0;
+}
+
+.wizard-actions.justify-center {
+  justify-content: center;
+}
+
+/* 4. Confirmación Baile Grupal (confirmar_baile_grupal.php) */
+.card-confirmacion-estudiante {
+  max-width: 600px;
+  margin: 35px auto;
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.card-confirmacion-header {
+  background-color: var(--color-primary);
+  color: var(--color-light-white);
+  padding: 22px 28px;
+  text-align: center;
+}
+
+.card-confirmacion-header h2 {
+  color: var(--color-light-white) !important;
+  margin: 0 0 8px 0;
+  font-size: 1.45rem;
+}
+
+.badge-modalidad-grupal {
+  background-color: var(--color-accent-yellow);
+  color: var(--color-text-dark);
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 13px;
+  display: inline-block;
+}
+
+.card-confirmacion-body {
+  padding: 28px;
+  background-color: var(--color-bg-card);
+}
+
+.confirmacion-info-box {
+  background-color: rgba(93, 199, 208, 0.12);
+  border-left: 5px solid var(--color-accent-teal);
+  padding: 18px 22px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 25px;
+}
+
+.confirmacion-destacado {
+  font-size: 1.05rem;
+  color: var(--color-text-main);
+  margin: 0 0 10px 0;
+  line-height: 1.5;
+}
+
+.confirmacion-detalle {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.confirmacion-acciones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.confirmacion-acciones .btn-volver {
+  margin: 0;
+}
+
+.btn-confirmar-participacion {
+  padding: 11px 26px !important;
+  font-size: 15px !important;
+}

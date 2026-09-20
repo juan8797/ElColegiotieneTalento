@@ -55,6 +55,12 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
             <p>Publica avisos, cambios del festival o información importante del colegio (no necesariamente relacionada con el festival) para que aparezca en la página principal.</p>
             <a href="/ElColegiotieneTalento/paneles/admin/panel_informacion.php" class="btn-admin">Ir a Información</a>
         </div>
+        
+        <div class="tarjeta-admin">
+            <h3>🏷️ Categorías</h3>
+            <p>Crea las categorías y subcategorías (hasta 3 niveles) para Talento Individual y Demostración Deportiva.</p>
+            <a href="/ElColegiotieneTalento/paneles/admin/panel_categorias.php" class="btn-admin">Ir a Categorías</a>
+        </div>
     </div>
 </main>
 

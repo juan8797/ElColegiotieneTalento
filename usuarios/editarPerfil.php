@@ -78,7 +78,7 @@ if ($usuario['rol'] === 'docente') {
 } elseif ($usuario['rol'] === 'admin') {
     $pagina_volver = '../paneles/admin/panel_admin_principal.php';
 } else {
-    $pagina_volver = '../paneles/Panel_estudiantes.php';
+    $pagina_volver = '../paneles/estudiante/Panel_estudiantes.php';
 }
 ?>
 <!DOCTYPE html>

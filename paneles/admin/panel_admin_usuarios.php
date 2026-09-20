@@ -55,7 +55,15 @@ $jurados = $conexion->query("SELECT id, nombre, apellido, correo
     <h2 class="titulo-seccion">Usuarios Registrados</h2>
 
     <section class="seccion-usuarios">
-        <h3>Estudiantes</h3>
+        <div class="seccion-usuarios-cabecera">
+            <div class="seccion-usuarios-titulo">
+                <h3>👥 Estudiantes</h3>
+                <span class="subtitulo-seccion-admin">Estudiantes inscritos en el festival</span>
+            </div>
+            <div class="seccion-usuarios-acciones">
+                <a href="panel_categorias.php" class="btn-admin btn-sm">🏷️ Categorías</a>
+            </div>
+        </div>
         <table class="tabla-participaciones">
             <thead>
                 <tr>
@@ -63,7 +71,7 @@ $jurados = $conexion->query("SELECT id, nombre, apellido, correo
                     <th>Apellido</th>
                     <th>Correo</th>
                     <th>Grado</th>
-                    <th>Acciones</th>
+                    <th style="width: 180px; text-align: center;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,7 +81,7 @@ $jurados = $conexion->query("SELECT id, nombre, apellido, correo
                     <td><?= htmlspecialchars($e['apellido']) ?></td>
                     <td><?= htmlspecialchars($e['correo']) ?></td>
                     <td><?= htmlspecialchars($e['grado'] ?? '—') ?></td>
-                    <td>
+                    <td style="text-align: center;">
                         <a href="/ElColegiotieneTalento/usuarios/editar_usuario_admin.php?id=<?= $e['id'] ?>" 
                            class="btn-editar">Editar</a>
                         <a href="?eliminar=<?= $e['id'] ?>"
@@ -87,7 +95,12 @@ $jurados = $conexion->query("SELECT id, nombre, apellido, correo
     </section>
 
     <section class="seccion-usuarios">
-        <h3>Docentes</h3>
+        <div class="seccion-usuarios-cabecera">
+            <div class="seccion-usuarios-titulo">
+                <h3>👨‍🏫 Docentes</h3>
+                <span class="subtitulo-seccion-admin">Docentes y grado a cargo</span>
+            </div>
+        </div>
         <table class="tabla-participaciones">
             <thead>
                 <tr>
@@ -95,7 +108,7 @@ $jurados = $conexion->query("SELECT id, nombre, apellido, correo
                     <th>Apellido</th>
                     <th>Correo</th>
                     <th>Grado a cargo</th>
-                    <th>Acciones</th>
+                    <th style="width: 180px; text-align: center;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -105,7 +118,7 @@ $jurados = $conexion->query("SELECT id, nombre, apellido, correo
                     <td><?= htmlspecialchars($d['apellido']) ?></td>
                     <td><?= htmlspecialchars($d['correo']) ?></td>
                     <td><?= htmlspecialchars($d['grado'] ?? '—') ?></td>
-                    <td>
+                    <td style="text-align: center;">
                         <a href="/ElColegiotieneTalento/usuarios/editar_usuario_admin.php?id=<?= $d['id'] ?>" 
                            class="btn-editar">Editar</a>
                         <a href="?eliminar=<?= $d['id'] ?>"
@@ -119,14 +132,19 @@ $jurados = $conexion->query("SELECT id, nombre, apellido, correo
     </section>
 
     <section class="seccion-usuarios">
-        <h3>Jurados</h3>
+        <div class="seccion-usuarios-cabecera">
+            <div class="seccion-usuarios-titulo">
+                <h3>⚖️ Jurados</h3>
+                <span class="subtitulo-seccion-admin">Jurados evaluadores del festival</span>
+            </div>
+        </div>
         <table class="tabla-participaciones">
             <thead>
                 <tr>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Correo</th>
-                    <th>Acciones</th>
+                    <th style="width: 180px; text-align: center;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -135,7 +153,7 @@ $jurados = $conexion->query("SELECT id, nombre, apellido, correo
                     <td><?= htmlspecialchars($j['nombre']) ?></td>
                     <td><?= htmlspecialchars($j['apellido']) ?></td>
                     <td><?= htmlspecialchars($j['correo']) ?></td>
-                    <td>
+                    <td style="text-align: center;">
                         <a href="/ElColegiotieneTalento/usuarios/editar_usuario_admin.php?id=<?= $j['id'] ?>" 
                            class="btn-editar">Editar</a>
                         <a href="?eliminar=<?= $j['id'] ?>"

@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } elseif ($usuario['rol'] === 'admin'){
                     header("Location: ../paneles/admin/panel_admin_principal.php");
                     }else{
-                        header("Location: ../paneles/Panel_estudiantes.php");
+                        header("Location: ../paneles/estudiante/Panel_estudiantes.php");
                     }
             exit();
         } else {

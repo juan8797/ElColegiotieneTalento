@@ -83,24 +83,43 @@ $resultado = $conexion->query("SELECT * FROM secciones_index ORDER BY id ASC");
     <?php endif; ?>
 
     <?php while ($seccion = $resultado->fetch_assoc()): ?>
-        <div class="form-admin">
-            <h3><?= htmlspecialchars($seccion['titulo']) ?></h3>
-            <img src="../<?= htmlspecialchars($seccion['imagen']) ?>" alt="" style="max-width:200px; display:block; margin-bottom:12px;">
+        <div class="seccion-admin-card">
+            <div class="seccion-admin-header">
+                <h3>🖼️ <?= htmlspecialchars($seccion['titulo']) ?></h3>
+            </div>
 
-            <form action="" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="<?= $seccion['id'] ?>">
+            <div class="seccion-admin-layout">
+                <div class="seccion-admin-preview">
+                    <span class="seccion-admin-preview-label">Imagen actual</span>
+                    <img src="../../<?= htmlspecialchars($seccion['imagen']) ?>" alt="<?= htmlspecialchars($seccion['titulo']) ?>" class="seccion-admin-img">
+                </div>
 
-                <label>Título:</label><br>
-                <input type="text" name="titulo" value="<?= htmlspecialchars($seccion['titulo']) ?>" required><br><br>
+                <div class="seccion-admin-form">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="<?= $seccion['id'] ?>">
 
-                <label>Descripción:</label><br>
-                <textarea name="descripcion" rows="2" required><?= htmlspecialchars($seccion['descripcion']) ?></textarea><br><br>
+                        <div class="campo-editar">
+                            <label class="form-label">Título de la sección:</label>
+                            <input type="text" name="titulo" class="form-control" value="<?= htmlspecialchars($seccion['titulo']) ?>" required>
+                        </div>
 
-                <label>Cambiar imagen (opcional):</label><br>
-                <input type="file" name="imagen" accept=".jpg,.jpeg,.png,.webp"><br><br>
+                        <div class="campo-editar">
+                            <label class="form-label">Descripción:</label>
+                            <textarea name="descripcion" rows="3" class="form-control" required><?= htmlspecialchars($seccion['descripcion']) ?></textarea>
+                        </div>
 
-                <button type="submit" name="editar">Guardar cambios</button>
-            </form>
+                        <div class="campo-editar">
+                            <label class="form-label">Cambiar imagen (opcional):</label>
+                            <input type="file" name="imagen" class="form-control" accept=".jpg,.jpeg,.png,.webp">
+                            <small class="form-text-admin">Formatos permitidos: JPG, JPEG, PNG, WEBP.</small>
+                        </div>
+
+                        <div class="botones-editar">
+                            <button type="submit" name="editar" class="btn-admin">Guardar cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     <?php endwhile; ?>
 </main>
