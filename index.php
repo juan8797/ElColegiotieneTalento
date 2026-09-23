@@ -69,6 +69,21 @@ $resultadoInfo = $conexion->query("SELECT * FROM informacion_institucional ORDER
 </div><br>
 <?php endif; ?>
 
+<div class="container text-center">
+  <h3 class="Categorias">Síguenos en nuestras redes</h3><br>
+  <div class="redes-sociales">
+    <a href="https://www.facebook.com/profile.php?id=100064278424507" target="_blank" class="icono-red">
+      <img src="img/icono-facebook.png" alt="Facebook">
+    </a>
+    <a href="#" target="_blank" class="icono-red">
+      <img src="img/icono-instagram.png" alt="Instagram">
+    </a>
+    <a href="#" target="_blank" class="icono-red">
+      <img src="img/icono-youtube.png" alt="YouTube">
+    </a>
+  </div>
+</div><br>
+
 <?php include 'includes/PiePagina.php'; ?>
 </body>
 </html>

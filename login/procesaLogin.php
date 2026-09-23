@@ -3,11 +3,13 @@ session_start();
 include '../conexion/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $correo    = $_POST['correo'];
+    $correo     = strtolower(trim($_POST['correo']));
     $contrasena = $_POST['contrasena'];
 
-    $sql = "SELECT * FROM usuarios WHERE correo = '$correo'";
-    $result = $conexion->query($sql);
+    $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE correo = ?");
+    $stmt->bind_param("s", $correo);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $usuario = $result->fetch_assoc();
@@ -18,14 +20,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['rol']    = $usuario['rol'];
 
             if ($usuario['rol'] === 'docente') {
-            header("Location: ../paneles/Panel_docentes.php");
+                header("Location: ../paneles/Panel_docentes.php");
             } elseif ($usuario['rol'] === 'jurado') {
                 header("Location: ../paneles/jurado/Panel_jurado_inicio.php");
-                } elseif ($usuario['rol'] === 'admin'){
-                    header("Location: ../paneles/admin/panel_admin_principal.php");
-                    }else{
-                        header("Location: ../paneles/estudiante/Panel_estudiantes.php");
-                    }
+            } elseif ($usuario['rol'] === 'admin') {
+                header("Location: ../paneles/admin/panel_admin_principal.php");
+            } else {
+                header("Location: ../paneles/estudiante/Panel_estudiantes.php");
+            }
             exit();
         } else {
             echo "Contraseña incorrecta.";
@@ -33,5 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "Usuario no encontrado.";
     }
+
+    $stmt->close();
 }
-?>

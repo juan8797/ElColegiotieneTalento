@@ -61,6 +61,13 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
             <p>Crea las categorías y subcategorías (hasta 3 niveles) para Talento Individual y Demostración Deportiva.</p>
             <a href="/ElColegiotieneTalento/paneles/admin/panel_categorias.php" class="btn-admin">Ir a Categorías</a>
         </div>
+
+        
+        <div class="tarjeta-admin">
+            <h3>🔑 Agregar Administrador</h3>
+            <p>Crea una cuenta adicional con permisos de administrador, como respaldo en caso de que el administrador principal no pueda acceder al sistema.</p>
+            <a href="/ElColegiotieneTalento/paneles/admin/agregar_admin.php" class="btn-admin">Ir a Agregar Admin</a>
+        </div>
     </div>
 </main>
 

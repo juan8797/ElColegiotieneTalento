@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: ../login/login.php");
+    header("Location: ../../login/login.php");
     exit();
 }
 
@@ -51,8 +51,14 @@ $jurados = $conexion->query("SELECT id, nombre, apellido, correo
 <?php include '../../includes/menu_admin.php'; ?>
 
 <main class="container-fluid">
-
-    <h2 class="titulo-seccion">Usuarios Registrados</h2>
+    <div class="seccion-usuarios-cabecera">
+        <div class="seccion-usuarios-titulo">
+            <h2 class="titulo-seccion">Usuarios Registrados</h2>
+        </div>
+        <div class="seccion-usuarios-acciones">
+            <a href="agregar_admin.php" class="btn-admin btn-sm">🔑 Agregar Administrador</a>
+        </div>
+    </div>
 
     <section class="seccion-usuarios">
         <div class="seccion-usuarios-cabecera">
