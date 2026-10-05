@@ -75,7 +75,8 @@ unset($_SESSION['mensaje']);
 
         <section class="seccion-usuarios">
             <h3>Listado de Criterios Registrados</h3>
-            <table class="tabla-participaciones">
+            <div class="tabla-responsive">
+                <table class="tabla-participaciones">
                 <thead>
                     <tr>
                         <th style="width: 80px;">ID</th>
@@ -108,6 +109,7 @@ unset($_SESSION['mensaje']);
                     <?php endif; ?>
                 </tbody>
             </table>
+            </div>
         </section>
     </main>
 

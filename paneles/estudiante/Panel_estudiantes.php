@@ -29,6 +29,7 @@ $stmt->close();
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Estudiante</title>
     <link rel="stylesheet" href="../../css/style.css">
 </head>
@@ -72,62 +73,64 @@ $stmt->close();
     <div class="cuerpo-formulario">
         <p>Selecciona una modalidad para registrarte. Puedes volver luego a registrar otra.</p>
 
-        <table class="tabla-participaciones">
-            <thead>
-                <tr>
-                    <th>Modalidad</th>
-                    <th style="width: 170px; text-align: center;">Estado</th>
-                    <th style="width: 160px;" class="col-accion">Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><span class="texto-modalidad">Talento Individual</span></td>
-                    <td style="text-align: center;">
-                        <?php if (in_array('talento_individual', $modalidadesRegistradas)): ?>
-                            <span class="estado-aprobado">&#10003; Ya registrado</span>
-                        <?php else: ?>
-                            <span class="estado-pendiente">Sin registrar</span>
-                        <?php endif; ?>
-                    </td>
-                    <td class="col-accion">
-                        <?php if (!in_array('talento_individual', $modalidadesRegistradas)): ?>
-                            <a href="seleccionar_categoria.php?modalidad=talento_individual" class="btn-admin btn-sm">Registrarme</a>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span class="texto-modalidad">Demostración Deportiva</span></td>
-                    <td style="text-align: center;">
-                        <?php if (in_array('demostracion_deportiva', $modalidadesRegistradas)): ?>
-                            <span class="estado-aprobado">&#10003; Ya registrado</span>
-                        <?php else: ?>
-                            <span class="estado-pendiente">Sin registrar</span>
-                        <?php endif; ?>
-                    </td>
-                    <td class="col-accion">
-                        <?php if (!in_array('demostracion_deportiva', $modalidadesRegistradas)): ?>
-                            <a href="seleccionar_categoria.php?modalidad=demostracion_deportiva" class="btn-admin btn-sm">Registrarme</a>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span class="texto-modalidad">Baile Grupal</span></td>
-                    <td style="text-align: center;">
-                        <?php if (in_array('baile_grupal', $modalidadesRegistradas)): ?>
-                            <span class="estado-aprobado">&#10003; Ya registrado</span>
-                        <?php else: ?>
-                            <span class="estado-pendiente">Sin registrar</span>
-                        <?php endif; ?>
-                    </td>
-                    <td class="col-accion">
-                        <?php if (!in_array('baile_grupal', $modalidadesRegistradas)): ?>
-                            <a href="confirmar_baile_grupal.php" class="btn-admin btn-sm">Registrarme</a>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="tabla-responsive">
+            <table class="tabla-participaciones">
+                <thead>
+                    <tr>
+                        <th>Modalidad</th>
+                        <th style="width: 170px; text-align: center;">Estado</th>
+                        <th style="width: 160px;" class="col-accion">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="texto-modalidad">Talento Individual</span></td>
+                        <td style="text-align: center;">
+                            <?php if (in_array('talento_individual', $modalidadesRegistradas)): ?>
+                                <span class="estado-aprobado">&#10003; Ya registrado</span>
+                            <?php else: ?>
+                                <span class="estado-pendiente">Sin registrar</span>
+                            <?php endif; ?>
+                        </td>
+                        <td class="col-accion">
+                            <?php if (!in_array('talento_individual', $modalidadesRegistradas)): ?>
+                                <a href="seleccionar_categoria.php?modalidad=talento_individual" class="btn-admin btn-sm">Registrarme</a>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="texto-modalidad">Demostración Deportiva</span></td>
+                        <td style="text-align: center;">
+                            <?php if (in_array('demostracion_deportiva', $modalidadesRegistradas)): ?>
+                                <span class="estado-aprobado">&#10003; Ya registrado</span>
+                            <?php else: ?>
+                                <span class="estado-pendiente">Sin registrar</span>
+                            <?php endif; ?>
+                        </td>
+                        <td class="col-accion">
+                            <?php if (!in_array('demostracion_deportiva', $modalidadesRegistradas)): ?>
+                                <a href="seleccionar_categoria.php?modalidad=demostracion_deportiva" class="btn-admin btn-sm">Registrarme</a>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="texto-modalidad">Baile Grupal</span></td>
+                        <td style="text-align: center;">
+                            <?php if (in_array('baile_grupal', $modalidadesRegistradas)): ?>
+                                <span class="estado-aprobado">&#10003; Ya registrado</span>
+                            <?php else: ?>
+                                <span class="estado-pendiente">Sin registrar</span>
+                            <?php endif; ?>
+                        </td>
+                        <td class="col-accion">
+                            <?php if (!in_array('baile_grupal', $modalidadesRegistradas)): ?>
+                                <a href="confirmar_baile_grupal.php" class="btn-admin btn-sm">Registrarme</a>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

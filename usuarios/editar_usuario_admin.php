@@ -11,7 +11,7 @@ require_once '../conexion/db.php';
 $id = $_GET['id'] ?? null;
 
 if (!$id) {
-    header("Location: ../paneles/panel_admin_usuarios.php");
+    header("Location: ../paneles/admin/panel_admin_usuarios.php");
     exit();
 }
 
@@ -65,14 +65,18 @@ $grados = $conexion->query("SELECT * FROM grados ORDER BY nombre ASC");
 <?php include '../includes/menu_admin.php'; ?>
 
 <main class="container-fluid">
-    <div class="seccion-usuarios">
-        <h2>Editar Usuario</h2>
+    <div class="contenedor-tarjeta-centrada">
+        <div class="card card-auth">
+            <div class="recuadro card-header text-center">
+                <h4>Editar Usuario</h4>
+            </div>
+            <div class="card-body">
 
-        <?php if ($mensaje): ?>
-            <p class="mensaje-admin"><?= htmlspecialchars($mensaje) ?></p>
-        <?php endif; ?>
+                <?php if ($mensaje): ?>
+                    <p class="mensaje-admin"><?= htmlspecialchars($mensaje) ?></p>
+                <?php endif; ?>
 
-        <form action="" method="POST">
+                <form action="" method="POST">
             <div class="campo-editar">
                 <label>Nombre:</label>
                 <input type="text" name="nombre" 
@@ -124,9 +128,11 @@ $grados = $conexion->query("SELECT * FROM grados ORDER BY nombre ASC");
 
             <div class="botones-editar">
                 <button type="submit" class="btn-admin">Guardar cambios</button>
-                <a href="../paneles/admin/panel_admin_usuarios.php" class="btn-eliminar">Cancelar</a>
+                <a href="../paneles/admin/panel_admin_usuarios.php" class="btn-volver">Cancelar</a>
             </div>
-        </form>
+                </form>
+            </div>
+        </div>
     </div>
 </main>
 

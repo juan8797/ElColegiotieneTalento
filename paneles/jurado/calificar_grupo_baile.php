@@ -98,30 +98,32 @@ $criterios = $stmt->get_result();
             <form method="POST" action="calificar_grupo_baile.php">
                 <input type="hidden" name="grado_id" value="<?= (int)$grado_id ?>">
 
-                <table class="tabla-participaciones">
-                    <thead>
-                        <tr>
-                            <th>Criterio</th>
-                            <th>Peso</th>
-                            <th>Puntaje (0-10)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php while ($c = $criterios->fetch_assoc()): ?>
+                <div class="tabla-responsive">
+                    <table class="tabla-participaciones">
+                        <thead>
                             <tr>
-                                <td><?= htmlspecialchars($c['nombre_criterio']) ?></td>
-                                <td><?= number_format($c['valor'], 2) ?>%</td>
-                                <td>
-                                    <input type="number"
-                                           name="puntaje[<?= $c['id'] ?>]"
-                                           min="0" max="10" step="0.1"
-                                           value="<?= htmlspecialchars($c['puntaje_actual'] ?? '') ?>"
-                                           required>
-                                </td>
+                                <th>Criterio</th>
+                                <th>Peso</th>
+                                <th>Puntaje (0-10)</th>
                             </tr>
-                        <?php endwhile; ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php while ($c = $criterios->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($c['nombre_criterio']) ?></td>
+                                    <td><?= number_format($c['valor'], 2) ?>%</td>
+                                    <td>
+                                        <input type="number"
+                                               name="puntaje[<?= $c['id'] ?>]"
+                                               min="0" max="10" step="0.1"
+                                               value="<?= htmlspecialchars($c['puntaje_actual'] ?? '') ?>"
+                                               required>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                </div>
 
                 <button type="submit" class="btn-guardar">Guardar Calificación</button>
             </form>

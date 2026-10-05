@@ -171,18 +171,20 @@ foreach ($todas as $cat) {
                 <span class="subtitulo-seccion-admin">Jerarquía estructurada de categorías y subcategorías</span>
             </div>
         </div>
-        <table class="tabla-participaciones">
-            <thead>
-                <tr>
-                    <th>Categoría</th>
-                    <th style="width: 120px;">Nivel</th>
-                    <th style="width: 130px;" class="col-accion">Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php imprimirArbol($todas, null, 'talento_individual'); ?>
-            </tbody>
-        </table>
+        <div class="tabla-responsive">
+            <table class="tabla-participaciones">
+                <thead>
+                    <tr>
+                        <th>Categoría</th>
+                        <th style="width: 120px;">Nivel</th>
+                        <th style="width: 130px;" class="col-accion">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php imprimirArbol($todas, null, 'talento_individual'); ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div class="seccion-usuarios">
@@ -192,18 +194,20 @@ foreach ($todas as $cat) {
                 <span class="subtitulo-seccion-admin">Jerarquía estructurada de categorías y subcategorías</span>
             </div>
         </div>
-        <table class="tabla-participaciones">
-            <thead>
-                <tr>
-                    <th>Categoría</th>
-                    <th style="width: 120px;">Nivel</th>
-                    <th style="width: 130px;" class="col-accion">Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php imprimirArbol($todas, null, 'demostracion_deportiva'); ?>
-            </tbody>
-        </table>
+        <div class="tabla-responsive">
+            <table class="tabla-participaciones">
+                <thead>
+                    <tr>
+                        <th>Categoría</th>
+                        <th style="width: 120px;">Nivel</th>
+                        <th style="width: 130px;" class="col-accion">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php imprimirArbol($todas, null, 'demostracion_deportiva'); ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </main>
 

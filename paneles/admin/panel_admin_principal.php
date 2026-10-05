@@ -46,7 +46,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
 
         <div class="tarjeta-admin">
             <h3>🖼️ Secciones del Inicio</h3>
-            <p>Edita el título, la descripción y la imagen de las tarjetas de Bailes Grupales, Talento Individual y Talento Deportivo que se muestran en la página principal del sitio.</p>
+            <p>Edita la imagen principal del index y el título y descripción de las tarjetas de Bailes Grupales, Talento Individual y Talento Deportivo que se muestran en la página principal del sitio.</p>
             <a href="/ElColegiotieneTalento/paneles/admin/panel_secciones_index.php" class="btn-admin">Ir a Secciones</a>
         </div>
 

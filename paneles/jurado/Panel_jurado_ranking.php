@@ -70,31 +70,33 @@ while ($fila = $resultado->fetch_assoc()) {
         <?php foreach ($categorias as $nombre_categoria => $grados): ?>
             <section class="seccion-usuarios">
                 <h3><?= htmlspecialchars(ucfirst($nombre_categoria)) ?></h3>
-                <table class="tabla-participaciones">
-                    <thead>
-                        <tr>
-                            <th>Posición</th>
-                            <th>Grado</th>
-                            <th>Puntaje promedio</th>
-                            <th>Jurados que calificaron</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($grados as $index => $g): ?>
+                <div class="tabla-responsive">
+                    <table class="tabla-participaciones">
+                        <thead>
                             <tr>
-                                <td>
-                                    <?= $index + 1 ?>
-                                    <?php if ($index === 0): ?>
-                                        <span class="estado-aprobado">🏆 Ganador</span>
-                                    <?php endif; ?>
-                                </td>
-                                <td><?= htmlspecialchars($g['grado_nombre']) ?></td>
-                                <td><?= number_format($g['promedio_final'], 2) ?></td>
-                                <td><?= (int)$g['num_jurados'] ?></td>
+                                <th>Posición</th>
+                                <th>Grado</th>
+                                <th>Puntaje promedio</th>
+                                <th>Jurados que calificaron</th>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($grados as $index => $g): ?>
+                                <tr>
+                                    <td>
+                                        <?= $index + 1 ?>
+                                        <?php if ($index === 0): ?>
+                                            <span class="estado-aprobado">🏆 Ganador</span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?= htmlspecialchars($g['grado_nombre']) ?></td>
+                                    <td><?= number_format($g['promedio_final'], 2) ?></td>
+                                    <td><?= (int)$g['num_jurados'] ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
             </section>
         <?php endforeach; ?>
     </main>

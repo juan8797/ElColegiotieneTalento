@@ -54,42 +54,44 @@ $resultado = $stmt->get_result();
         </div>
 
         <section class="seccion-usuarios">
-            <table class="tabla-participaciones">
-                <thead>
-                    <tr>
-                        <th>Grado</th>
-                        <th>Estudiantes</th>
-                        <th>Estado de tu calificación</th>
-                        <th>Acción</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($fila = $resultado->fetch_assoc()): ?>
+            <div class="tabla-responsive">
+                <table class="tabla-participaciones">
+                    <thead>
                         <tr>
-                            <td><?= htmlspecialchars($fila['grado_nombre']) ?></td>
-                            <td><?= (int)$fila['num_estudiantes'] ?></td>
-                            <td>
-                                <?php if ($fila['total_criterios'] == 0): ?>
-                                    <span class="estado-pendiente">Sin criterios definidos</span>
-                                <?php elseif ($fila['criterios_calificados'] >= $fila['total_criterios']): ?>
-                                    <span class="estado-aprobado">Calificado</span>
-                                <?php else: ?>
-                                    <span class="estado-pendiente">Pendiente</span>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <a href="calificar_grupo_baile.php?grado_id=<?= $fila['grado_id'] ?>"
-                                   class="btn-editar">
-                                    Calificar
-                                </a>
-                            </td>
+                            <th>Grado</th>
+                            <th>Estudiantes</th>
+                            <th>Estado de tu calificación</th>
+                            <th>Acción</th>
                         </tr>
-                    <?php endwhile; ?>
-                    <?php if ($resultado->num_rows === 0): ?>
-                        <tr><td colspan="4">Aún no hay grados aprobados en baile grupal.</td></tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php while ($fila = $resultado->fetch_assoc()): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($fila['grado_nombre']) ?></td>
+                                <td><?= (int)$fila['num_estudiantes'] ?></td>
+                                <td>
+                                    <?php if ($fila['total_criterios'] == 0): ?>
+                                        <span class="estado-pendiente">Sin criterios definidos</span>
+                                    <?php elseif ($fila['criterios_calificados'] >= $fila['total_criterios']): ?>
+                                        <span class="estado-aprobado">Calificado</span>
+                                    <?php else: ?>
+                                        <span class="estado-pendiente">Pendiente</span>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <a href="calificar_grupo_baile.php?grado_id=<?= $fila['grado_id'] ?>"
+                                       class="btn-editar">
+                                        Calificar
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                        <?php if ($resultado->num_rows === 0): ?>
+                            <tr><td colspan="4">Aún no hay grados aprobados en baile grupal.</td></tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
 </body>

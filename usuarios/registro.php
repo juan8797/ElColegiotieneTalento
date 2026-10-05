@@ -1,4 +1,4 @@
-<?php include '../conexion/db.php'; ?><?php include '../conexion/db.php'; ?>
+<?php include '../conexion/db.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,12 +12,12 @@
 <body>
     <?php include '../includes/menu.php'; ?>
 
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="card">
+            <div class="col-md-5">
+                <div class="card card-auth">
                     <div class="recuadro card-header text-center">
-                        <h4 class="Color-text">Registro</h4>
+                        <h4>Registro</h4>
                     </div>
                     <div class="card-body">
                         <form action="/ElColegiotieneTalento/login/procesaRegistro.php" method="post">
@@ -61,6 +61,7 @@
                                 <button type="submit" class="btn btn-primary">Registrarme</button>
                             </div>
                         </form>
+                        <a href="../login/login.php" class="enlace-auth">¿Ya tienes cuenta? Inicia sesión</a>
                     </div>
                 </div>
             </div>

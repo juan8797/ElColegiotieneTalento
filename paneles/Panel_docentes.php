@@ -74,45 +74,47 @@ $resultado = $stmt->get_result();
     <div class="explanation-table">
         <p class="text-explanation">Estimado docente, <?php echo $_SESSION['nombre']; ?>  la intencion de la tabla acontinuacon es demostrar los estudiantes que van a participar en el festival y en que van a participar. su labor sera aprobar o rechasar la solcitud de participacon del estudiante dependiendo como considere que se encuentra su acto en el caso de que consedere nesesario aportar con un comentario ouna sugerencia podra hacerlo.</p>
     </div>
-        <table class="tabla-participaciones">
-            <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Modalidad</th>
-                <th>Nombre del acto</th>
-                <th>Estado</th>
-                <th>Acción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($p = $resultado->fetch_assoc()): ?>
-            <tr>
-                <td><?= htmlspecialchars($p['nombre']) ?></td>
-                <td><?= htmlspecialchars($p['apellido']) ?></td>
-                <td><?= htmlspecialchars($p['modalidad']) ?></td>
-                <td><?= htmlspecialchars($p['nombre_acto'] ?? '—') ?></td>
-                <td class="estado-<?= $p['estado'] ?>">
-                    <?= ucfirst($p['estado']) ?>
-                </td>
-                <td>
-                    <form action="" method="POST">
-                        <input type="hidden" name="id" value="<?= $p['id'] ?>">
-                        <select name="estado">
-                            <option value="pendiente" <?= $p['estado'] === 'pendiente' ? 'selected' : '' ?>>Pendiente</option>
-                            <option value="aprobado"  <?= $p['estado'] === 'aprobado'  ? 'selected' : '' ?>>Aprobado</option>
-                            <option value="rechazado" <?= $p['estado'] === 'rechazado' ? 'selected' : '' ?>>Rechazado</option>
-                        </select>
-                        <input type="text" name="comentario"
-                               placeholder="Comentario..."
-                               value="<?= htmlspecialchars($p['comentario'] ?? '') ?>">
-                        <button type="submit" class="btn-editar">Guardar</button>
-                    </form>
-                </td>
-            </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
+        <div class="tabla-responsive">
+            <table class="tabla-participaciones">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Modalidad</th>
+                    <th>Nombre del acto</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($p = $resultado->fetch_assoc()): ?>
+                <tr>
+                    <td><?= htmlspecialchars($p['nombre']) ?></td>
+                    <td><?= htmlspecialchars($p['apellido']) ?></td>
+                    <td><?= htmlspecialchars($p['modalidad']) ?></td>
+                    <td><?= htmlspecialchars($p['nombre_acto'] ?? '—') ?></td>
+                    <td class="estado-<?= $p['estado'] ?>">
+                        <?= ucfirst($p['estado']) ?>
+                    </td>
+                    <td>
+                        <form action="" method="POST">
+                            <input type="hidden" name="id" value="<?= $p['id'] ?>">
+                            <select name="estado">
+                                <option value="pendiente" <?= $p['estado'] === 'pendiente' ? 'selected' : '' ?>>Pendiente</option>
+                                <option value="aprobado"  <?= $p['estado'] === 'aprobado'  ? 'selected' : '' ?>>Aprobado</option>
+                                <option value="rechazado" <?= $p['estado'] === 'rechazado' ? 'selected' : '' ?>>Rechazado</option>
+                            </select>
+                            <input type="text" name="comentario"
+                                   placeholder="Comentario..."
+                                   value="<?= htmlspecialchars($p['comentario'] ?? '') ?>">
+                            <button type="submit" class="btn-editar">Guardar</button>
+                        </form>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+            </tbody>
+            </table>
+        </div>
 </main>
 
 <?php include '../includes/PiePagina.php'; ?>

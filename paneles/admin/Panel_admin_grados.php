@@ -90,56 +90,58 @@ $resultado = $conexion->query("SELECT * FROM grados ORDER BY nombre ASC");
 
     <section class="seccion-usuarios">
         <h3>Grados y Grupos Registrados</h3>
-        <table class="tabla-participaciones">
-            <thead>
-                <tr>
-                    <th style="width: 70px; text-align: center;">ID</th>
-                    <th>Grado y Grupo</th>
-                    <th style="text-align: center;">Categoría</th>
-                    <th style="min-width: 320px;">Edición Rápida</th>
-                    <th style="width: 100px; text-align: center;">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($grado = $resultado->fetch_assoc()): ?>
-                <tr>
-                    <td style="text-align: center;"><strong>#<?= $grado['id'] ?></strong></td>
-                    <td><strong><?= htmlspecialchars($grado['nombre']) ?></strong></td>
-                    <td style="text-align: center;">
-                        <span class="badge-categoria badge-cat-<?= htmlspecialchars($grado['categoria'] ?? '') ?>">
-                            <?= htmlspecialchars(ucfirst($grado['categoria'] ?? '—')) ?>
-                        </span>
-                    </td>
-                    <td>
-                        <form action="" method="POST" class="form-edicion-inline-grado">
-                            <input type="hidden" name="id" value="<?= $grado['id'] ?>">
-                            <input type="text" name="nombre_editar" class="form-control form-control-sm"
-                                   value="<?= htmlspecialchars($grado['nombre']) ?>" placeholder="Grado" required>
-                            <select name="categoria_editar" class="form-control form-control-sm" required>
-                                <option value="primaria" <?= $grado['categoria'] === 'primaria' ? 'selected' : '' ?>>Primaria</option>
-                                <option value="pre-juvenil" <?= $grado['categoria'] === 'pre-juvenil' ? 'selected' : '' ?>>Pre-juvenil</option>
-                                <option value="juvenil" <?= $grado['categoria'] === 'juvenil' ? 'selected' : '' ?>>Juvenil</option>
-                            </select>
-                            <button type="submit" name="editar" class="btn-admin btn-sm">Guardar</button>
-                        </form>
-                    </td>
-                    <td style="text-align: center;">
-                        <a href="?eliminar=<?= $grado['id'] ?>" class="btn-eliminar"
-                           onclick="return confirm('¿Seguro que quieres eliminar este grado?')">
-                           Eliminar
-                        </a>
-                    </td>
-                </tr>
-                <?php endwhile; ?>
-                <?php if ($resultado->num_rows === 0): ?>
-                <tr>
-                    <td colspan="5" style="text-align: center; padding: 25px; color: var(--color-text-muted);">
-                        No hay grados registrados aún.
-                    </td>
-                </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+        <div class="tabla-responsive">
+            <table class="tabla-participaciones">
+                <thead>
+                    <tr>
+                        <th style="width: 70px; text-align: center;">ID</th>
+                        <th>Grado y Grupo</th>
+                        <th style="text-align: center;">Categoría</th>
+                        <th style="min-width: 320px;">Edición Rápida</th>
+                        <th style="width: 100px; text-align: center;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($grado = $resultado->fetch_assoc()): ?>
+                    <tr>
+                        <td style="text-align: center;"><strong>#<?= $grado['id'] ?></strong></td>
+                        <td><strong><?= htmlspecialchars($grado['nombre']) ?></strong></td>
+                        <td style="text-align: center;">
+                            <span class="badge-categoria badge-cat-<?= htmlspecialchars($grado['categoria'] ?? '') ?>">
+                                <?= htmlspecialchars(ucfirst($grado['categoria'] ?? '—')) ?>
+                            </span>
+                        </td>
+                        <td>
+                            <form action="" method="POST" class="form-edicion-inline-grado">
+                                <input type="hidden" name="id" value="<?= $grado['id'] ?>">
+                                <input type="text" name="nombre_editar" class="form-control form-control-sm"
+                                       value="<?= htmlspecialchars($grado['nombre']) ?>" placeholder="Grado" required>
+                                <select name="categoria_editar" class="form-control form-control-sm" required>
+                                    <option value="primaria" <?= $grado['categoria'] === 'primaria' ? 'selected' : '' ?>>Primaria</option>
+                                    <option value="pre-juvenil" <?= $grado['categoria'] === 'pre-juvenil' ? 'selected' : '' ?>>Pre-juvenil</option>
+                                    <option value="juvenil" <?= $grado['categoria'] === 'juvenil' ? 'selected' : '' ?>>Juvenil</option>
+                                </select>
+                                <button type="submit" name="editar" class="btn-admin btn-sm">Guardar</button>
+                            </form>
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="?eliminar=<?= $grado['id'] ?>" class="btn-eliminar"
+                               onclick="return confirm('¿Seguro que quieres eliminar este grado?')">
+                               Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                    <?php if ($resultado->num_rows === 0): ?>
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 25px; color: var(--color-text-muted);">
+                            No hay grados registrados aún.
+                        </td>
+                    </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </section>
 </main>
 

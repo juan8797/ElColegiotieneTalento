@@ -89,7 +89,8 @@ $resultado = $conexion->query("SELECT * FROM informacion_institucional ORDER BY 
 
     <section class="seccion-usuarios">
         <h3>Avisos e Informaciones Registradas</h3>
-        <table class="tabla-participaciones">
+        <div class="tabla-responsive">
+            <table class="tabla-participaciones">
             <thead>
                 <tr>
                     <th style="width: 22%;">Título</th>
@@ -129,6 +130,7 @@ $resultado = $conexion->query("SELECT * FROM informacion_institucional ORDER BY 
                 <?php endif; ?>
             </tbody>
         </table>
+        </div>
     </section>
 </main>
 

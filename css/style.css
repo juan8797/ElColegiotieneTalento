@@ -12,8 +12,6 @@
   --color-accent-yellow-hover: #f0cc35;
   --color-accent-teal: #5dc7d0;
   --color-accent-teal-hover: #48b4bd;
-  --color-accent-purple: #630699;
-  --color-accent-purple-hover: #4a0073;
   --color-footer-green: #187f3f;
   --color-footer-green-hover: #136632;
   
@@ -41,16 +39,6 @@
   --color-success-text: #155724;
   --color-success-border: #c3e6cb;
   
-  --color-danger-bg: #f8d7da;
-  --color-danger-text: #721c24;
-  --color-danger-border: #f5c6cb;
-  --color-danger-btn: #d9534f;
-  --color-danger-btn-hover: #c9302c;
-  
-  --color-warning-bg: #fff3cd;
-  --color-warning-text: #856404;
-  --color-warning-border: #ffeeba;
-
   --color-table-hover: #e0d0f0;
 
   /* Sombras y Elevación */
@@ -117,9 +105,15 @@ p, .Categorias, ul {
 }
 
 .Categorias {
-  color: var(--color-text-dark);
+  display: inline-block;
+  color: var(--color-light-white);
+  background-color: var(--color-primary);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
+  padding: 10px 30px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  letter-spacing: 0.3px;
 }
 
 .Color-text {
@@ -245,6 +239,14 @@ p, .Categorias, ul {
 /* ==========================================================================
    PÁGINA PRINCIPAL / INDEX
    ========================================================================== */
+.container.text-center {
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  padding: 35px 25px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow-md);
+}
+
 .imgcentral {
   width: 100%;
   max-width: 900px;
@@ -253,17 +255,8 @@ p, .Categorias, ul {
   margin: 0 auto 25px auto;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
+  border: 4px solid var(--color-accent-yellow);
   object-fit: cover;
-}
-
-.img-responsive {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  display: block;
-  margin: 15px auto;
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
-  box-shadow: var(--shadow-xs);
 }
 
 .col-text,
@@ -277,13 +270,13 @@ p, .Categorias, ul {
   max-width: 360px;
   min-height: 90px;
   margin: 0 auto 20px auto;
-  padding: 18px 20px;
+  padding: 20px 22px;
   color: var(--color-text-heading);
   text-align: center;
-  background-color: var(--color-accent-teal);
-  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  background-color: var(--color-border);
+  border-top: 5px solid var(--color-primary);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
-  border: none;
   transition: var(--transition-normal);
 }
 
@@ -310,6 +303,26 @@ p, .Categorias, ul {
   color: var(--color-text-dark);
   font-size: 0.95rem;
   margin-bottom: 3px;
+}
+
+/* Tarjetas de talentos del festival: cada una con un color de acento distinto */
+.fila-talentos .col-sm-4:nth-of-type(1) .well {
+  background-color: var(--color-accent-teal);
+  border-top: none;
+}
+
+.fila-talentos .col-sm-4:nth-of-type(2) .well {
+  background-color: var(--color-primary);
+  border-top: none;
+}
+
+.fila-talentos .col-sm-4:nth-of-type(2) .Color-text {
+  color: var(--color-light-white) !important;
+}
+
+.fila-talentos .col-sm-4:nth-of-type(3) .well {
+  background-color: var(--color-accent-yellow);
+  border-top: none;
 }
 
 /* Carrusel de Bootstrap */
@@ -413,10 +426,10 @@ p, .Categorias, ul {
 }
 
 .box-3 {
-  background-color: var(--color-bg-box-gray);
+  background-color: var(--color-accent-teal);
 }
 .box-3 h3, .box-3 p {
-  color: var(--color-light-white);
+  color: var(--color-text-dark);
   text-align: left;
 }
 
@@ -593,9 +606,9 @@ p, .Categorias, ul {
 }
 
 .estado-pendiente {
-  background-color: var(--color-warning-bg);
-  color: var(--color-warning-text);
-  border: 1px solid var(--color-warning-border);
+  background-color: rgba(93, 199, 208, 0.12);
+  color: var(--color-primary);
+  border: 1px solid var(--color-accent-teal);
 }
 
 .estado-aprobado {
@@ -605,9 +618,9 @@ p, .Categorias, ul {
 }
 
 .estado-rechazado {
-  background-color: var(--color-danger-bg);
-  color: var(--color-danger-text);
-  border: 1px solid var(--color-danger-border);
+  background-color: var(--color-bg-box-gray);
+  color: var(--color-light-white);
+  border: 1px solid var(--color-border-dark);
 }
 
 /* Mensajes explicativos en paneles */
@@ -635,6 +648,10 @@ p, .Categorias, ul {
   padding: 30px 20px;
   text-align: center;
   color: var(--color-light-white);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 25px;
 }
 
 .bienvenida-admin h2 {
@@ -723,7 +740,7 @@ p, .Categorias, ul {
 }
 
 .seccion-usuarios h3 {
-  color: var(--color-accent-purple);
+  color: var(--color-primary);
   margin-bottom: 20px;
   font-size: 1.3rem;
 }
@@ -737,7 +754,8 @@ p, .Categorias, ul {
 .form-admin {
   background-color: var(--color-bg-card);
   padding: 24px;
-  margin: 20px 0;
+  margin: 20px auto;
+  max-width: 820px;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
 }
@@ -801,6 +819,67 @@ p, .Categorias, ul {
   padding: 30px;
 }
 
+/* Contenedor para centrar una tarjeta de formulario (sin depender del grid de Bootstrap) */
+.contenedor-tarjeta-centrada {
+  display: flex;
+  justify-content: center;
+  padding: 10px 15px 40px 15px;
+}
+
+.contenedor-tarjeta-centrada .card {
+  width: 100%;
+  max-width: 520px;
+}
+
+/* Tarjetas de autenticación (Registro e Iniciar Sesión) */
+.card-auth {
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-lg);
+}
+
+.card-auth .card-header {
+  text-align: center;
+  padding: 24px;
+}
+
+.card-auth .card-header h4 {
+  font-size: 1.4rem;
+  letter-spacing: 0.3px;
+}
+
+.card-auth .card-body {
+  padding: 35px 32px;
+}
+
+.card-auth .form-label {
+  font-size: 14.5px;
+}
+
+.card-auth .mb-3 {
+  margin-bottom: 18px !important;
+}
+
+.card-auth .btn-primary {
+  width: 100%;
+  padding: 11px !important;
+  margin-top: 10px;
+}
+
+/* Iniciar Sesión: enlace a "¿Olvidaste tu contraseña?" / "Crear cuenta" */
+.card-auth .enlace-auth {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.card-auth .enlace-auth:hover {
+  text-decoration: underline;
+}
+
 .form-label {
   color: var(--color-text-main);
   font-weight: 600;
@@ -808,6 +887,9 @@ p, .Categorias, ul {
 }
 
 .form-control {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
   padding: 10px 14px;
   border: 1px solid var(--color-border-dark);
   border-radius: var(--radius-sm);
@@ -863,7 +945,7 @@ p, .Categorias, ul {
 }
 
 .btn-eliminar {
-  background-color: var(--color-danger-btn);
+  background-color: var(--color-dark-charcoal);
   color: var(--color-light-white) !important;
   border: none;
   padding: 8px 16px;
@@ -879,7 +961,7 @@ p, .Categorias, ul {
 }
 
 .btn-eliminar:hover {
-  background-color: var(--color-danger-btn-hover);
+  background-color: var(--color-text-dark);
   color: var(--color-light-white) !important;
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
@@ -904,20 +986,36 @@ p, .Categorias, ul {
 .btn-volver {
   display: inline-block;
   margin: 15px auto;
-  color: var(--color-light-white);
+  color: var(--color-text-main);
   text-decoration: none;
   font-weight: 600;
   padding: 8px 16px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  border: 2px solid var(--color-border-dark);
   border-radius: var(--radius-sm);
   transition: var(--transition-fast);
   text-align: center;
 }
 
 .btn-volver:hover {
-  background-color: rgba(0, 0, 0, 0.35);
-  color: var(--color-light-white);
+  background-color: var(--color-border);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
   text-decoration: none;
+}
+
+/* Cuando el botón Volver va sobre un fondo oscuro (ej. encabezados), se invierte el estilo */
+.wizard-header .btn-volver,
+.card-confirmacion-header .btn-volver {
+  color: var(--color-light-white);
+  border-color: var(--color-border-light);
+}
+
+.wizard-header .btn-volver:hover,
+.card-confirmacion-header .btn-volver:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--color-light-white);
+  color: var(--color-light-white);
 }
 
 /* Panel Jurado */
@@ -933,12 +1031,12 @@ p, .Categorias, ul {
 }
 
 .form-observacion:focus {
-  border-color: var(--color-accent-purple);
+  border-color: var(--color-primary);
   outline: none;
 }
 
 .btn-guardar-obs {
-  background-color: var(--color-accent-purple);
+  background-color: var(--color-primary);
   color: var(--color-light-white);
   padding: 6px 14px;
   border: none;
@@ -950,7 +1048,7 @@ p, .Categorias, ul {
 }
 
 .btn-guardar-obs:hover {
-  background-color: var(--color-accent-purple-hover);
+  background-color: var(--color-primary-hover);
 }
 
 /* Campos de edición */
@@ -967,8 +1065,13 @@ p, .Categorias, ul {
 
 .botones-editar {
   display: flex;
+  align-items: center;
   gap: 12px;
   margin-top: 25px;
+}
+
+.botones-editar .btn-volver {
+  margin: 0;
 }
 
 /* Perfil y avisos */
@@ -1025,9 +1128,14 @@ p, .Categorias, ul {
 }
 
 .alerta.error {
-  background-color: var(--color-danger-bg);
-  color: var(--color-danger-text);
-  border: 1px solid var(--color-danger-border);
+  background-color: var(--color-bg-box-gray);
+  color: var(--color-light-white);
+  border: 1px solid var(--color-border-dark);
+}
+
+.alerta.error p {
+  color: var(--color-light-white);
+  margin: 0;
 }
 
 /* ==========================================================================
@@ -1121,7 +1229,7 @@ footer.pie-pagina p {
 }
 
 .resumen-criterios.alerta {
-  border-left: 5px solid var(--color-danger-btn);
+  border-left: 5px solid var(--color-dark-charcoal);
 }
 
 .resumen-info {
@@ -1147,9 +1255,9 @@ footer.pie-pagina p {
 }
 
 .badge-estado-alerta {
-  background-color: var(--color-danger-bg);
-  color: var(--color-danger-text);
-  border: 1px solid var(--color-danger-border);
+  background-color: var(--color-bg-box-gray);
+  color: var(--color-light-white);
+  border: 1px solid var(--color-border-dark);
   padding: 6px 14px;
   border-radius: var(--radius-pill);
   font-weight: 700;
@@ -1182,7 +1290,7 @@ footer.pie-pagina p {
 }
 
 .card-confirmar-eliminar h2 {
-  color: var(--color-danger-text);
+  color: var(--color-dark-charcoal);
   font-size: 1.6rem;
   margin-bottom: 15px;
 }
@@ -1204,8 +1312,22 @@ footer.pie-pagina p {
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   padding: 24px;
-  margin-bottom: 25px;
+  margin: 0 auto 25px auto;
   border-left: 5px solid var(--color-primary);
+  max-width: 820px;
+}
+
+/* Grid para las tarjetas de Bailes Grupales / Talento Individual / Talento Deportivo */
+.grid-secciones-admin {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  align-items: start;
+}
+
+.grid-secciones-admin .seccion-admin-card {
+  max-width: none;
+  margin: 0;
 }
 
 .seccion-admin-header {
@@ -1361,7 +1483,7 @@ footer.pie-pagina p {
 }
 
 .badge-cat-juvenil {
-  background-color: var(--color-accent-purple);
+  background-color: var(--color-primary);
   color: var(--color-light-white);
 }
 
@@ -1375,6 +1497,11 @@ footer.pie-pagina p {
   border-bottom: 1px solid var(--color-border);
   flex-wrap: wrap;
   gap: 15px;
+}
+
+.seccion-usuarios-cabecera .titulo-seccion {
+  color: var(--color-text-main);
+  padding: 0;
 }
 
 .seccion-usuarios-titulo h3 {
@@ -1628,6 +1755,11 @@ footer.pie-pagina p {
   line-height: 1.5;
 }
 
+.alerta-resumen-pasos p {
+  color: var(--color-text-main);
+  margin: 0;
+}
+
 .wizard-actions {
   display: flex;
   justify-content: space-between;
@@ -1739,4 +1871,70 @@ footer.pie-pagina p {
 
 .icono-red:hover img {
   transform: scale(1.1);
+}
+
+/* ==========================================================================
+   FORMULARIO AGREGAR ADMINISTRADOR (agregar_admin.php)
+   ========================================================================== */
+.contenido-form-admin {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* El mensaje de error usaba el verde de éxito; esta variante lo pone en rojo */
+.mensaje-admin.mensaje-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.form-admin-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-admin-grid .campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-admin-grid .campo-completo,
+.form-admin-grid .acciones-form {
+  grid-column: 1 / -1;
+}
+
+.form-admin-grid label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text-main);
+}
+
+.form-admin .form-admin-grid input {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+.form-admin-grid .ayuda-campo {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.form-admin-grid .acciones-form {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+@media (max-width: 600px) {
+  .form-admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-admin-grid .acciones-form button {
+    width: 100%;
+  }
 }
