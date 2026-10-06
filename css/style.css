@@ -1938,3 +1938,356 @@ footer.pie-pagina p {
     width: 100%;
   }
 }
+
+
+/* ==========================================================================
+   CARRUSEL DEL INDEX (index.php) Y SU ADMINISTRACIÓN (panel_secciones_index.php)
+   Solo CSS: los inputs radio guardan cuál imagen está activa.
+   ========================================================================== */
+.carrusel {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto 25px auto;
+}
+
+.carrusel-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.carrusel-radio:focus-visible ~ .carrusel-ventana {
+  outline: 3px solid var(--color-accent-teal);
+  outline-offset: 3px;
+}
+
+.carrusel-ventana {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 4px solid var(--color-accent-yellow);
+  box-shadow: var(--shadow-md);
+  background-color: var(--color-dark-charcoal);
+}
+
+.carrusel-pista {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carrusel-slide {
+  position: relative;
+  flex: 0 0 100%;
+}
+
+.carrusel-slide img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.carrusel-flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(34, 40, 49, 0.55);
+  color: var(--color-light-white);
+  font-size: 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: var(--transition-fast);
+}
+
+.carrusel-flecha:hover {
+  background-color: var(--color-primary);
+}
+
+.carrusel-anterior {
+  left: 12px;
+}
+
+.carrusel-siguiente {
+  right: 12px;
+}
+
+.carrusel-puntos {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.carrusel-puntos label {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-light-white);
+  border: 2px solid var(--color-primary);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.carrusel-puntos label:hover {
+  background-color: var(--color-primary-light);
+}
+
+@media (max-width: 600px) {
+  .carrusel-flecha {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+}
+
+/* Administración del carrusel */
+.carrusel-admin-lista {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border);
+}
+
+.carrusel-admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.carrusel-admin-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: #f8fafc;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+/* Confirmación de eliminación sin JavaScript (usa el elemento details de HTML) */
+.confirmar-eliminar summary {
+  display: block;
+  list-style: none;
+  margin-left: 0;
+  text-align: center;
+}
+
+.confirmar-eliminar summary::-webkit-details-marker {
+  display: none;
+}
+
+.confirmar-eliminar[open] summary {
+  background-color: var(--color-text-muted);
+}
+
+.confirmar-eliminar .form-text-admin {
+  margin: 8px 0;
+  text-align: center;
+}
+
+.confirmar-eliminar button.btn-eliminar {
+  display: block;
+  width: 100%;
+  margin-left: 0;
+  background-color: #721c24;
+}
+
+
+/* Cambio automático del carrusel: pausa al pasar el mouse y respeta "reducir movimiento" */
+.carrusel:not(:has(.carrusel-radio:checked)):hover .carrusel-pista,
+.carrusel:not(:has(.carrusel-radio:checked)):hover .carrusel-puntos label {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carrusel .carrusel-pista,
+  .carrusel .carrusel-puntos label {
+    animation: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   LOGO DEL MENÚ: clic para ampliar, clic de nuevo (o fuera del logo) para cerrar.
+   Solo CSS: un checkbox oculto guarda si el logo está ampliado o no.
+   ========================================================================== */
+.logo-check {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.logo-click {
+  display: inline-block;
+  line-height: 0;
+  cursor: zoom-in;
+  border-radius: var(--radius-sm);
+}
+
+.logo-check:focus-visible ~ .logo-click {
+  outline: 3px solid var(--color-accent-teal);
+  outline-offset: 3px;
+}
+
+/* Fondo oscuro que aparece solo mientras el logo está ampliado */
+.logo-fondo {
+  display: none;
+}
+
+.logo-check:checked ~ .logo-fondo {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(34, 40, 49, 0.6);
+  cursor: zoom-out;
+}
+
+.logo-check:checked ~ .logo-click {
+  position: relative;
+  z-index: 1001;
+  cursor: zoom-out;
+}
+
+/* Tamaño ampliado: cambia el 3 si lo quieres más grande o más pequeño */
+.logo-check:checked ~ .logo-click .logo-menu,
+.logo-check:checked ~ .logo-click .logo-menu:hover {
+  transform: scale(3);
+  transform-origin: left top;
+  box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 768px) {
+  .logo-check:checked ~ .logo-click .logo-menu,
+  .logo-check:checked ~ .logo-click .logo-menu:hover {
+    transform: scale(2.4);
+    transform-origin: center top;
+  }
+}
+
+
+/* ==========================================================================
+   IMÁGENES DEL CARRUSEL QUE LLEVAN A LA INFORMACIÓN INSTITUCIONAL
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.carrusel-enlace {
+  display: block;
+}
+
+.carrusel-etiqueta {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-accent-yellow);
+  color: var(--color-text-dark);
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+  pointer-events: none;
+}
+
+/* Tarjeta de información a la que se llegó desde el carrusel */
+[id^="info-"] {
+  scroll-margin-top: 20px;
+}
+
+[id^="info-"]:target .well {
+  outline: 4px solid var(--color-accent-yellow);
+  outline-offset: 3px;
+}
+
+/* Panel admin: selector de enlace en cada imagen del carrusel */
+.carrusel-admin-grid {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.carrusel-admin-enlace {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.carrusel-admin-enlace .form-control {
+  font-size: 13px;
+}
+
+
+/* ==========================================================================
+   IMÁGENES ADJUNTAS DE LA INFORMACIÓN INSTITUCIONAL
+   ========================================================================== */
+.info-galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.info-galeria-una {
+  grid-template-columns: 1fr;
+}
+
+.info-galeria a {
+  display: block;
+}
+
+.info-galeria img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  transition: var(--transition-fast);
+}
+
+.info-galeria-una img {
+  aspect-ratio: 16 / 9;
+}
+
+.info-galeria a:hover img {
+  transform: scale(1.03);
+}
+
+/* Panel admin: miniaturas de las imágenes adjuntas */
+.info-admin-imagenes {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border);
+}
+
+.info-admin-miniaturas {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.info-admin-miniatura {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-admin-miniatura img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}

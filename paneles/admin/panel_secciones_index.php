@@ -2,14 +2,36 @@
 session_start();
 
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: ../login/login.php");
+    header("Location: ../../login/login.php");
     exit();
 }
 
 require_once '../../conexion/db.php';
 
 $mensaje = "";
+$claseMensaje = "mensaje-admin";
+$carpetaImagenes = '../../img/';
 
+// Información institucional disponible para enlazar desde las imágenes del carrusel (id => título)
+$informaciones = [];
+$resultadoInformaciones = $conexion->query("SELECT id, titulo FROM informacion_institucional ORDER BY fecha_publicacion DESC");
+while ($fila = $resultadoInformaciones->fetch_assoc()) {
+    $informaciones[(int) $fila['id']] = $fila['titulo'];
+}
+
+// Devuelve el id si corresponde a una información existente; si no, null (sin enlace)
+function validarInformacion($valor, $informaciones) {
+    $id = (int) $valor;
+    return isset($informaciones[$id]) ? $id : null;
+}
+
+// Si el servidor rechaza la subida por tamaño total, PHP deja $_POST y $_FILES vacíos
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST) && empty($_FILES) && ($_SERVER['CONTENT_LENGTH'] ?? 0) > 0) {
+    $mensaje = "Las imágenes superan el tamaño total que permite el servidor. Sube menos imágenes a la vez.";
+    $claseMensaje = "mensaje-admin mensaje-error";
+}
+
+// Editar título y descripción de las tarjetas
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
     $id          = $_POST['id'];
     $titulo      = $_POST['titulo'];
@@ -20,62 +42,112 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
     $stmt->execute();
     $stmt->close();
 
-    if ($mensaje === "") {
-        $mensaje = "Sección actualizada correctamente.";
-    }
+    $mensaje = "Sección actualizada correctamente.";
 }
 
-// Guardar/cambiar la imagen principal (única sección con imagen en este panel)
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['guardar_imagen_principal'])) {
-    $stmtActual = $conexion->prepare("SELECT imagen FROM secciones_index WHERE clave = 'imagen_principal'");
-    $stmtActual->execute();
-    $imagenActual = $stmtActual->get_result()->fetch_assoc()['imagen'] ?? '';
-    $stmtActual->close();
+// Agregar una o varias imágenes al carrusel
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregar_carrusel'])) {
+    $extensionesPermitidas = ['jpg', 'jpeg', 'png', 'webp'];
+    $tamanoMaximo = 5 * 1024 * 1024; // 5 MB por imagen
+    $subidas = 0;
+    $rechazadas = 0;
 
-    $rutaImagen = $imagenActual;
+    if (isset($_FILES['imagenes_carrusel'])) {
+        $archivos = $_FILES['imagenes_carrusel'];
+        $cantidad = count($archivos['name']);
+        $idInformacion = validarInformacion($_POST['id_informacion'] ?? 0, $informaciones);
+        $stmt = $conexion->prepare("INSERT INTO carrusel_imagenes (imagen, id_informacion) VALUES (?, ?)");
 
-    if (isset($_FILES['imagen_principal']) && $_FILES['imagen_principal']['error'] === UPLOAD_ERR_OK) {
-        $extensionesPermitidas = ['jpg', 'jpeg', 'png', 'webp'];
-        $extension = strtolower(pathinfo($_FILES['imagen_principal']['name'], PATHINFO_EXTENSION));
-
-        if (in_array($extension, $extensionesPermitidas)) {
-            $nombreArchivo = 'ImagenPrincipal_' . time() . '.' . $extension;
-            $rutaDestino = '../../img/' . $nombreArchivo;
-
-            if (move_uploaded_file($_FILES['imagen_principal']['tmp_name'], $rutaDestino)) {
-                $rutaImagen = 'img/' . $nombreArchivo;
-            } else {
-                $mensaje = "No se pudo subir la imagen principal, se mantuvo la anterior.";
+        for ($i = 0; $i < $cantidad; $i++) {
+            if ($archivos['error'][$i] === UPLOAD_ERR_NO_FILE) {
+                continue;
             }
-        } else {
-            $mensaje = "Formato de imagen no permitido (usa jpg, jpeg, png o webp). No se cambió la imagen.";
+
+            if ($archivos['error'][$i] !== UPLOAD_ERR_OK || $archivos['size'][$i] > $tamanoMaximo) {
+                $rechazadas++;
+                continue;
+            }
+
+            $extension = strtolower(pathinfo($archivos['name'][$i], PATHINFO_EXTENSION));
+            $esImagenValida = in_array($extension, $extensionesPermitidas)
+                && @getimagesize($archivos['tmp_name'][$i]) !== false;
+
+            if (!$esImagenValida) {
+                $rechazadas++;
+                continue;
+            }
+
+            $nombreArchivo = 'Carrusel_' . time() . '_' . $i . '_' . bin2hex(random_bytes(3)) . '.' . $extension;
+
+            if (move_uploaded_file($archivos['tmp_name'][$i], $carpetaImagenes . $nombreArchivo)) {
+                $rutaImagen = 'img/' . $nombreArchivo;
+                $stmt->bind_param("si", $rutaImagen, $idInformacion);
+                $stmt->execute();
+                $subidas++;
+            } else {
+                $rechazadas++;
+            }
         }
+        $stmt->close();
     }
 
-    $stmt = $conexion->prepare("UPDATE secciones_index SET imagen = ? WHERE clave = 'imagen_principal'");
-    $stmt->bind_param("s", $rutaImagen);
-    $stmt->execute();
-    $stmt->close();
-
-    if ($mensaje === "") {
-        $mensaje = "Imagen principal actualizada correctamente.";
+    if ($subidas > 0 && $rechazadas === 0) {
+        $mensaje = $subidas === 1 ? "Imagen agregada al carrusel." : "$subidas imágenes agregadas al carrusel.";
+    } elseif ($subidas > 0) {
+        $mensaje = "Se agregaron $subidas imagen(es). $rechazadas no se pudieron subir (usa jpg, jpeg, png o webp de máximo 5 MB).";
+    } else {
+        $mensaje = "No se agregó ninguna imagen. Usa archivos jpg, jpeg, png o webp de máximo 5 MB.";
+        $claseMensaje = "mensaje-admin mensaje-error";
     }
 }
 
-// Eliminar la imagen principal (queda sin imagen en el index hasta que se suba otra)
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_imagen_principal'])) {
-    $stmt = $conexion->prepare("UPDATE secciones_index SET imagen = '' WHERE clave = 'imagen_principal'");
+// Cambiar a qué información lleva una imagen del carrusel
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['guardar_enlace'])) {
+    $idImagen = (int) $_POST['id_imagen'];
+    $idInformacion = validarInformacion($_POST['id_informacion'] ?? 0, $informaciones);
+
+    $stmt = $conexion->prepare("UPDATE carrusel_imagenes SET id_informacion = ? WHERE id = ?");
+    $stmt->bind_param("ii", $idInformacion, $idImagen);
     $stmt->execute();
     $stmt->close();
-    $mensaje = "Imagen principal eliminada.";
+
+    $mensaje = $idInformacion === null
+        ? "La imagen quedó sin enlace."
+        : "Enlace de la imagen actualizado.";
 }
 
-$stmtImgPrincipal = $conexion->prepare("SELECT * FROM secciones_index WHERE clave = 'imagen_principal'");
-$stmtImgPrincipal->execute();
-$imagenPrincipal = $stmtImgPrincipal->get_result()->fetch_assoc();
-$stmtImgPrincipal->close();
+// Eliminar una imagen del carrusel (de la base de datos y de la carpeta img)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_carrusel'])) {
+    $idImagen = (int) $_POST['id_imagen'];
 
-// El resto de secciones (título/descripción) se listan aparte, sin la fila de la imagen principal
+    $stmt = $conexion->prepare("SELECT imagen FROM carrusel_imagenes WHERE id = ?");
+    $stmt->bind_param("i", $idImagen);
+    $stmt->execute();
+    $imagenEliminar = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+
+    if ($imagenEliminar) {
+        $archivoReal = realpath('../../' . $imagenEliminar['imagen']);
+        $carpetaReal = realpath($carpetaImagenes);
+
+        // Solo borra el archivo si realmente está dentro de la carpeta img
+        if ($archivoReal !== false && $carpetaReal !== false
+            && strpos($archivoReal, $carpetaReal) === 0 && is_file($archivoReal)) {
+            unlink($archivoReal);
+        }
+
+        $stmt = $conexion->prepare("DELETE FROM carrusel_imagenes WHERE id = ?");
+        $stmt->bind_param("i", $idImagen);
+        $stmt->execute();
+        $stmt->close();
+
+        $mensaje = "Imagen eliminada del carrusel.";
+    }
+}
+
+$resultadoCarrusel = $conexion->query("SELECT * FROM carrusel_imagenes ORDER BY id ASC");
+
+// Las tarjetas (título/descripción) se listan sin la fila antigua de la imagen principal
 $resultado = $conexion->query("SELECT * FROM secciones_index WHERE clave != 'imagen_principal' ORDER BY id ASC");
 ?>
 <!DOCTYPE html>
@@ -96,46 +168,84 @@ $resultado = $conexion->query("SELECT * FROM secciones_index WHERE clave != 'ima
     </div>
     <div class="explanation-table">
         <p class="text-explanation">
-            Desde aquí puedes cambiar la imagen principal del index, y el título
+            Desde aquí puedes administrar las imágenes del carrusel del index, y el título
             y la descripción de las 3 tarjetas que aparecen en la página principal del sitio.
         </p>
     </div>
 
     <?php if ($mensaje): ?>
-        <p class="mensaje-admin"><?= htmlspecialchars($mensaje) ?></p>
+        <p class="<?= $claseMensaje ?>" role="alert"><?= htmlspecialchars($mensaje) ?></p>
     <?php endif; ?>
 
     <div class="seccion-admin-card">
         <div class="seccion-admin-header">
-            <h3>🖼️ Imagen principal del index</h3>
+            <h3>🖼️ Carrusel de imágenes del index</h3>
         </div>
 
-        <div class="seccion-admin-layout">
-            <div class="seccion-admin-preview">
-                <span class="seccion-admin-preview-label">Imagen actual</span>
-                <?php if (!empty($imagenPrincipal['imagen'])): ?>
-                    <img src="../../<?= htmlspecialchars($imagenPrincipal['imagen']) ?>" alt="Imagen principal" class="seccion-admin-img">
-                <?php else: ?>
-                    <p class="form-text-admin">No hay ninguna imagen asignada actualmente.</p>
-                <?php endif; ?>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div class="campo-editar">
+                <label class="form-label" for="imagenes_carrusel">Agregar imágenes al carrusel:</label>
+                <input type="file" name="imagenes_carrusel[]" id="imagenes_carrusel" class="form-control"
+                       accept=".jpg,.jpeg,.png,.webp" multiple required>
+                <small class="form-text-admin">
+                    Puedes seleccionar varias a la vez. Formatos: JPG, JPEG, PNG o WEBP, máximo 5 MB cada una.
+                    Se ven mejor en formato horizontal (16:9).
+                </small>
             </div>
+            <div class="campo-editar">
+                <label class="form-label" for="id_informacion">Al tocar la imagen, llevar a (opcional):</label>
+                <select name="id_informacion" id="id_informacion" class="form-control">
+                    <option value="0">Sin enlace</option>
+                    <?php foreach ($informaciones as $idInfo => $tituloInfo): ?>
+                        <option value="<?= $idInfo ?>"><?= htmlspecialchars($tituloInfo) ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <small class="form-text-admin">
+                    Sirve para anunciar eventos: la imagen baja directo a la tarjeta de Información Institucional que elijas.
+                    Si subes varias a la vez, todas llevarán al mismo lugar; después puedes cambiarlo imagen por imagen.
+                </small>
+            </div>
+            <div class="botones-editar">
+                <button type="submit" name="agregar_carrusel" class="btn-admin">Subir imágenes</button>
+            </div>
+        </form>
 
-            <div class="seccion-admin-form">
-                <form action="" method="POST" enctype="multipart/form-data">
-                    <div class="campo-editar">
-                        <label class="form-label">Cambiar imagen principal:</label>
-                        <input type="file" name="imagen_principal" class="form-control" accept=".jpg,.jpeg,.png,.webp">
-                        <small class="form-text-admin">Formatos permitidos: JPG, JPEG, PNG, WEBP.</small>
-                    </div>
-                    <div class="botones-editar">
-                        <button type="submit" name="guardar_imagen_principal" class="btn-admin">Guardar imagen</button>
-                        <?php if (!empty($imagenPrincipal['imagen'])): ?>
-                            <button type="submit" name="eliminar_imagen_principal" class="btn-eliminar"
-                                    onclick="return confirm('¿Seguro que quieres eliminar la imagen principal del index?');">Eliminar imagen</button>
-                        <?php endif; ?>
-                    </div>
-                </form>
-            </div>
+        <div class="carrusel-admin-lista">
+            <span class="seccion-admin-preview-label">
+                Imágenes actuales (<?= $resultadoCarrusel->num_rows ?>)
+            </span>
+
+            <?php if ($resultadoCarrusel->num_rows > 0): ?>
+                <div class="carrusel-admin-grid">
+                    <?php while ($imagen = $resultadoCarrusel->fetch_assoc()): ?>
+                        <div class="carrusel-admin-item">
+                            <img src="../../<?= htmlspecialchars($imagen['imagen']) ?>" alt="Imagen del carrusel" class="seccion-admin-img">
+
+                            <form action="" method="POST" class="carrusel-admin-enlace">
+                                <input type="hidden" name="id_imagen" value="<?= (int) $imagen['id'] ?>">
+                                <select name="id_informacion" class="form-control" aria-label="Información a la que lleva esta imagen">
+                                    <option value="0">Sin enlace</option>
+                                    <?php foreach ($informaciones as $idInfo => $tituloInfo): ?>
+                                        <option value="<?= $idInfo ?>"<?= (int) $imagen['id_informacion'] === $idInfo ? ' selected' : '' ?>><?= htmlspecialchars($tituloInfo) ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <button type="submit" name="guardar_enlace" class="btn-admin">Guardar enlace</button>
+                            </form>
+
+                            <form action="" method="POST">
+                                <input type="hidden" name="id_imagen" value="<?= (int) $imagen['id'] ?>">
+                                <details class="confirmar-eliminar">
+                                    <summary class="btn-eliminar">Eliminar</summary>
+                                    <small class="form-text-admin">¿Seguro que quieres quitarla del carrusel?</small>
+                                    <button type="submit" name="eliminar_carrusel" class="btn-eliminar">Sí, eliminar</button>
+                                </details>
+                            </form>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+            <?php else: ?>
+                <p class="form-text-admin">Aún no hay imágenes en el carrusel. El index no mostrará ninguna hasta que subas una.</p>
+            <?php endif; ?>
         </div>
     </div>
 
