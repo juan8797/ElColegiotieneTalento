@@ -2291,3 +2291,274 @@ html {
   object-fit: cover;
   border-radius: var(--radius-sm);
 }
+
+
+/* ==========================================================================
+   DISEÑO RESPONSIVO: CELULARES Y TABLETS
+   (va al final del archivo para que tenga prioridad sobre las reglas anteriores)
+   ========================================================================== */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Grillas con ancho mínimo fijo: ya no desbordan en pantallas angostas */
+.Container-box {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+
+.tarjetas-admin,
+.grid-secciones-admin {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+.form-grid-categorias {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+}
+
+.seccion-admin-form,
+.campo-inline {
+  min-width: min(100%, 220px);
+}
+
+.form-admin input[type="text"] {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* ---------- Tablets (hasta 992px) ---------- */
+@media (max-width: 992px) {
+  .menu {
+    padding: 12px 22px;
+  }
+
+  .container.text-center {
+    padding: 28px 18px;
+  }
+
+  .card-auth .card-body {
+    padding: 30px 24px;
+  }
+}
+
+/* ---------- Celulares y tablets pequeñas (hasta 768px) ---------- */
+@media (max-width: 768px) {
+  body > .container-fluid,
+  main.container-fluid {
+    padding: 14px 12px;
+  }
+
+  .container.text-center {
+    padding: 22px 14px;
+    border-radius: var(--radius-md);
+    margin-bottom: 20px;
+  }
+
+  .Categorias {
+    font-size: 1.15rem;
+    padding: 8px 20px;
+    border-radius: var(--radius-md);
+    max-width: 100%;
+  }
+
+  /* Las tarjetas del index pasan a una sola columna */
+  .row > .col-sm-4 {
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .well {
+    max-width: 520px;
+  }
+
+  /* Menús: enlaces más cómodos para tocar con el dedo */
+  .logo-menu {
+    height: 44px;
+  }
+
+  .menu a,
+  #menus,
+  .menu-admin-enlaces a {
+    padding: 10px 14px;
+  }
+
+  .menu-enlaces,
+  .menu-admin-enlaces {
+    gap: 8px;
+  }
+
+  /* Encabezados de panel */
+  .encabezado-panel {
+    padding: 14px 16px;
+  }
+
+  .encabezado-panel h1,
+  .encabezado-panel h2 {
+    font-size: 1.25rem;
+  }
+
+  .explanation-table {
+    padding: 14px 16px;
+  }
+
+  /* Formularios y tarjetas */
+  .form-admin {
+    padding: 18px 14px;
+  }
+
+  .formulario-participacion .cuerpo-formulario,
+  .tabla-estudiante-container .cuerpo-formulario {
+    padding: 20px 16px;
+  }
+
+  .card-auth .card-header {
+    padding: 18px;
+  }
+
+  .card-auth .card-body {
+    padding: 24px 18px;
+  }
+
+  .seccion-admin-layout {
+    gap: 18px;
+  }
+
+  .seccion-admin-preview {
+    flex: 1 1 100%;
+  }
+
+  /* 16px evita que el iPhone haga zoom al tocar un campo */
+  .form-control,
+  .form-control-sm,
+  .form-admin input,
+  .form-admin select,
+  .form-admin textarea,
+  .formulario-participacion input[type="text"],
+  .tabla-participaciones select,
+  .tabla-participaciones input[type="text"] {
+    font-size: 16px;
+  }
+
+  /* Botones con tamaño mínimo cómodo para el dedo (44px) */
+  .btn-admin,
+  .btn-eliminar,
+  .btn-primary,
+  .btn-volver,
+  .btn-cerrar,
+  .form-admin button,
+  .formulario-participacion button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .botones-editar {
+    flex-wrap: wrap;
+  }
+
+  /* Tablas: se desplazan de lado dentro de su contenedor, sin romper la página */
+  .tabla-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tabla-responsive .tabla-participaciones {
+    display: table;
+    white-space: normal;
+    min-width: 720px;
+  }
+
+  .tabla-participaciones th,
+  .tabla-participaciones td {
+    padding: 10px 12px;
+  }
+
+  .tabla-participaciones .texto-contenido-tabla {
+    white-space: normal;
+    min-width: 200px;
+  }
+
+  /* Carrusel */
+  .carrusel-ventana {
+    border-width: 3px;
+  }
+
+  .carrusel-etiqueta {
+    left: 8px;
+    bottom: 8px;
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+
+  .carrusel-puntos {
+    gap: 8px;
+  }
+
+  /* Pie de página */
+  footer.pie-pagina {
+    padding: 18px 14px;
+  }
+}
+
+/* ---------- Celulares pequeños (hasta 480px) ---------- */
+@media (max-width: 480px) {
+  body > .container-fluid,
+  main.container-fluid {
+    padding: 10px 8px;
+  }
+
+  .container.text-center {
+    padding: 18px 10px;
+  }
+
+  .Categorias {
+    font-size: 1.05rem;
+    padding: 8px 14px;
+  }
+
+  .menu,
+  .menu-admin {
+    padding: 12px 14px;
+  }
+
+  .menu a,
+  #menus,
+  .menu-admin-enlaces a {
+    font-size: 14px;
+    padding: 9px 12px;
+  }
+
+  .carrusel-flecha {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .carrusel-anterior {
+    left: 6px;
+  }
+
+  .carrusel-siguiente {
+    right: 6px;
+  }
+
+  .info-galeria {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .info-galeria-una {
+    grid-template-columns: 1fr;
+  }
+
+  .card-auth .card-body {
+    padding: 20px 14px;
+  }
+}
